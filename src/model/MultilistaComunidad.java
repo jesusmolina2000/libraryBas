@@ -20,7 +20,16 @@ public class MultilistaComunidad {
     }
 
     //
-    public void insertarUsuario(String nombreUsuario, int codigoUsuario) {
+    public void insertarUsuario(String nombreUsuario, int codigoUsuario, String tipoUsuario) {
+        switch (tipoUsuario){
+            case "Estudiante":
+                
+                break;
+            case "Docente":
+                break;
+            case "Padre de familia":
+                break;
+        }
         NodoUsuario ultimoUsuario = ultimoUsuario();
         NodoUsuario nuevoUsuario = new NodoUsuario(nombreUsuario, codigoUsuario);
         if (ultimoUsuario != null) {
