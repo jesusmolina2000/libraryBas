@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.util.Date;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -25,6 +26,8 @@ public class NodoUsuarioPrestamo extends NodoRecurso{
     public NodoUsuarioPrestamo(String nombreProducto, int codigoProducto, String tipo) {
         super(nombreProducto, codigoProducto, tipo);
         setFechaPrestamo(fechaPrestamo);
+        Date date = new Date();
+        date.
         siguiente=null;
     }
     
