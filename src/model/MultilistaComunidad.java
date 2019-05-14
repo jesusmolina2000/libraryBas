@@ -20,12 +20,22 @@ public class MultilistaComunidad {
     }
 
     //
-    public void insertarUsuario(String nombreUsuario, int codigoUsuario) {
+    public void insertarUsuario(String nombreUsuario, int codigoUsuario, String tipoUsuario) {
         NodoUsuario ultimoUsuario = ultimoUsuario();
-        NodoUsuario nuevoUsuario = new NodoUsuario(nombreUsuario, codigoUsuario);
+        NodoUsuario nuevoUsuario = null;
+        switch (tipoUsuario) {
+            case "Estudiante":
+                nuevoUsuario = new Estudiante(nombreUsuario, codigoUsuario, tipoUsuario);
+                break;
+            case "Docente":
+                nuevoUsuario = new Docente(nombreUsuario, codigoUsuario, nombreUsuario);
+                break;
+            case "Padre de familia":
+                nuevoUsuario = new PadreDefamilia(nombreUsuario, codigoUsuario);
+                break;
+        }
         if (ultimoUsuario != null) {
             ultimoUsuario.siguiente = nuevoUsuario;
-            nuevoUsuario.anterior = ultimoUsuario;
         } else {
             usuario = nuevoUsuario;
         }

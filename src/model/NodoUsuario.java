@@ -19,18 +19,15 @@ public class NodoUsuario {
     private final StringProperty nombreUsuario = new SimpleStringProperty();
     private final IntegerProperty codigoUsuario = new SimpleIntegerProperty();
     public NodoUsuario siguiente;
-    public NodoUsuario anterior;
 
     public NodoUsuario() {
         siguiente = null;
-        anterior = null;
     }
 
     public NodoUsuario(String nommbreUsuario, int codigoUsuario) {
         setNombreUsuario(nommbreUsuario);
         setCodigoUsuario(codigoUsuario);
         siguiente = null;
-        anterior = null;
     }
 
     public int getCodigoUsuario() {
