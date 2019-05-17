@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="327.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLLibraryBasController">
+    <stylesheets>
+        <URL value="@estilo.css" />
+    </stylesheets>
+   <children>
+      <Pane layoutX="4.0" layoutY="3.0" prefHeight="361.0" prefWidth="594.0">
+         <children>
+            <JFXPasswordField alignment="CENTER" focusColor="BLACK" labelFloat="true" layoutX="14.0" layoutY="179.0" promptText="Contraseña" unFocusColor="BLACK">
+               <font>
+                  <Font name="Times New Roman" size="20.0" />
+               </font></JFXPasswordField>
+            <JFXTextField alignment="CENTER" focusColor="BLACK" labelFloat="true" layoutX="14.0" layoutY="109.0" promptText="Codigo Usuario" unFocusColor="BLACK">
+               <font>
+                  <Font name="Times New Roman" size="20.0" />
+               </font></JFXTextField>
+            <JFXComboBox focusColor="BLACK" labelFloat="true" layoutX="344.0" layoutY="109.0" prefHeight="31.0" prefWidth="202.0" promptText="Tipo Usuario" unFocusColor="BLACK" />
+            <JFXComboBox focusColor="BLACK" labelFloat="true" layoutX="344.0" layoutY="182.0" prefHeight="31.0" prefWidth="202.0" promptText="Tipo Objeto" unFocusColor="BLACK" />
+            <Text layoutX="185.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prestamo" textAlignment="CENTER">
+               <font>
+                  <Font name="Times New Roman" size="60.0" />
+               </font>
+            </Text>
+            <JFXButton fx:id="buttonGuardar" layoutX="14.0" layoutY="238.0" onAction="#setOnActionButtonGuardar" prefHeight="97.0" prefWidth="227.0" ripplerFill="#317a10" text="Guardar" />
+            <JFXButton layoutX="340.0" layoutY="236.0" prefHeight="101.0" prefWidth="211.0" ripplerFill="#317a10" text="Cancelar" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

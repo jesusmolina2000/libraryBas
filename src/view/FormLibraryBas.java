@@ -41,8 +41,5 @@ public class FormLibraryBas extends Application {
         launch(args);
     }
     
-    public void colocarBotones(){
-        URL linkGuardar = getClass().getResource("/image/guardar.png");
-    }
-
+    
 }
