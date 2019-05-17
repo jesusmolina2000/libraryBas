@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="517.0" prefWidth="334.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="view.LoginController">
+    <stylesheets>
+        <URL value="@login.css" />
+    </stylesheets>
+   <children>
+      <Pane layoutX="5.0" prefHeight="517.0" prefWidth="325.0">
+         <children>
+            <ImageView fitHeight="122.0" fitWidth="136.0" layoutX="105.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Proyecto%20LibraryBas/iconoUsuario.png" />
+               </image>
+            </ImageView>
+            <JFXTextField layoutX="34.0" layoutY="195.0" prefHeight="31.0" prefWidth="257.0" promptText="Usuario" />
+            <JFXPasswordField layoutX="34.0" layoutY="275.0" prefHeight="31.0" prefWidth="257.0" promptText="Contraseña" />
+            <JFXButton layoutY="382.0" prefHeight="46.0" prefWidth="325.0" text="Entrar" />
+            <HBox layoutY="455.0" prefHeight="56.0" prefWidth="325.0">
+               <children>
+                  <JFXButton prefHeight="100.0" prefWidth="218.0" text="Crear Usuario" />
+                  <JFXButton prefHeight="100.0" prefWidth="193.0" text="Salir" />
+               </children>
+            </HBox>
+            <Label layoutX="34.0" layoutY="323.0" prefHeight="46.0" prefWidth="257.0" text="Texto de advertencia" textAlignment="CENTER" textFill="#d01c1c" underline="true" wrapText="true" />
+            <Label prefHeight="42.0" prefWidth="325.0" text="    INICIAR SECION" textAlignment="CENTER">
+               <font>
+                  <Font name="Comic Sans MS" size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

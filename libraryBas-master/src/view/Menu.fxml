@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="view.FormLibraryBas">
+    <stylesheets>
+        <URL value="@menu.css" />
+    </stylesheets>
+   <children>
+      <Pane layoutX="-1.0" layoutY="-2.0" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <JFXButton layoutX="451.0" layoutY="312.0" prefHeight="80.0" prefWidth="149.0" text="Cerrar Sesion" />
+            <JFXButton layoutX="40.0" layoutY="38.0" prefHeight="80.0" prefWidth="229.0" text="Ingresar Pedido" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

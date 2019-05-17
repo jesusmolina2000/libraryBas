@@ -10,7 +10,7 @@ import javafx.beans.property.StringProperty;
 
 /**
  *
- * @author jesusmolina
+ * @author jesus
  */
 public class Docente extends NodoUsuario {
 
