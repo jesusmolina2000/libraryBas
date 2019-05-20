@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
-<?import com.jfoenix.controls.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
@@ -9,28 +9,131 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="327.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controller.FXMLLibraryBasController">
+<AnchorPane id="AnchorPane" prefHeight="513.0" prefWidth="750.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controller.FXMLLibraryBasController">
     <stylesheets>
         <URL value="@estilo.css" />
     </stylesheets>
    <children>
-      <Pane layoutX="4.0" layoutY="3.0" prefHeight="349.0" prefWidth="594.0">
+      <VBox prefHeight="513.0" prefWidth="208.0" style="-fx-background-color: #009999;">
          <children>
-            <JFXPasswordField layoutX="63.0" layoutY="188.0" promptText="Contraseña" />
-            <JFXTextField layoutX="63.0" layoutY="109.0" promptText="Codigo Usuario" />
-            <JFXComboBox layoutX="344.0" layoutY="109.0" prefHeight="31.0" prefWidth="202.0" promptText="Tipo Usuario" />
-            <JFXComboBox layoutX="344.0" layoutY="182.0" prefHeight="31.0" prefWidth="202.0" promptText="Tipo Objeto" />
-            <HBox layoutY="244.0" prefHeight="100.0" prefWidth="600.0">
+            <Pane prefHeight="140.0" prefWidth="181.0" style="-fx-background-color: #006666;">
                <children>
-                  <JFXButton prefHeight="97.0" prefWidth="327.0" text="Guardar" />
-                  <JFXButton prefHeight="101.0" prefWidth="283.0" text="Cancelar" />
+                  <Text fontSmoothingType="LCD" layoutX="73.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LibraryBas">
+                     <font>
+                        <Font name="Times New Roman" size="24.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="47.0" fitWidth="97.0" layoutX="14.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../multimedia/books.png" />
+                     </image>
+                  </ImageView>
                </children>
-            </HBox>
-            <Label layoutX="206.0" layoutY="14.0" prefHeight="65.0" prefWidth="188.0" text="Pedido">
-               <font>
-                  <Font name="Elephant" size="51.0" />
-               </font>
-            </Label>
+            </Pane>
+            <Button fx:id="buttonInventario" mnemonicParsing="false" onAction="#handleClick" prefHeight="47.0" prefWidth="214.0" text="Inventario" />
+            <Button fx:id="buttonUsuario" mnemonicParsing="false" onAction="#handleClick" prefHeight="47.0" prefWidth="213.0" text="Usuarios" />
+            <Button fx:id="buttonPrestamo" mnemonicParsing="false" onAction="#handleClick" prefHeight="47.0" prefWidth="215.0" text="Prestamos" />
+            <Button fx:id="buttonDevolucion" mnemonicParsing="false" onAction="#handleClick" prefHeight="47.0" prefWidth="216.0" text="Devoluciones" />
+            <Button fx:id="buttonMulta" mnemonicParsing="false" onAction="#handleClick" prefHeight="47.0" prefWidth="215.0" text="Multas" />
+         </children>
+      </VBox>
+      <ImageView fx:id="imageViewClose" fitHeight="16.0" fitWidth="101.0" layoutX="720.0" layoutY="14.0" onMouseClicked="#setOnMouseClickedImageViewClose" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../multimedia/close.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imageViewMinimize" fitHeight="16.0" fitWidth="101.0" layoutX="689.0" layoutY="14.0" onMouseClicked="#setOnMouseClickedImageViewMinimize" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../multimedia/minimize.png" />
+         </image>
+      </ImageView>
+      <StackPane layoutX="214.0" layoutY="155.0">
+         <children>
+            <GridPane fx:id="gridPaneMulta" style="-fx-background-color: white;">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+            <GridPane fx:id="gridPaneDevolucion" style="-fx-background-color: white;">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+            <GridPane fx:id="gridPanePrestamo" layoutX="215.0" style="-fx-background-color: white;">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+            <GridPane fx:id="gridPaneUsuario" style="-fx-background-color: white;">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <TextField fx:id="textNombreUsuario" promptText="Ingrese nombre " />
+                  <TextField fx:id="textIdUsuario" promptText="Ingrese ID" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="comboBoxRol" prefHeight="26.0" prefWidth="267.0" promptText="Rol" GridPane.rowIndex="2" />
+                  <Button fx:id="buttonAñadirUsuario" mnemonicParsing="false" stylesheets="@estilo2.css" text="Añadir usuario" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
+            <GridPane fx:id="gridPaneInventario" layoutX="215.0" layoutY="166.0" prefHeight="338.0" prefWidth="530.0" style="-fx-background-color: white;">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="191.0" minHeight="0.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="240.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="299.0" minHeight="10.0" prefHeight="283.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <TextField fx:id="textId" prefHeight="26.0" prefWidth="253.0" promptText="Ingrese ID" />
+                        <ComboBox fx:id="comboBoxTipo" prefHeight="26.0" prefWidth="235.0" promptText="Tipo " />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.rowIndex="1">
+                     <children>
+                        <Button fx:id="buttonInsertarRecurso" mnemonicParsing="false" prefHeight="25.0" prefWidth="246.0" stylesheets="@estilo2.css" text="Insertar recurso" />
+                        <Button fx:id="buttonEliminarRecurso" mnemonicParsing="false" prefHeight="25.0" prefWidth="249.0" stylesheets="@estilo2.css" text="Eliminar recurso" />
+                     </children>
+                  </HBox>
+                  <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+                    <columns>
+                      <TableColumn prefWidth="252.0" text="ID" />
+                      <TableColumn prefWidth="277.0" text="Tipo" />
+                    </columns>
+                  </TableView>
+               </children>
+            </GridPane>
+         </children>
+      </StackPane>
+      <Pane fx:id="paneEstado" layoutX="208.0" layoutY="64.0" prefHeight="76.0" prefWidth="542.0" style="-fx-background-color: #009999;">
+         <children>
+            <Label fx:id="labelEstado" layoutX="14.0" layoutY="30.0" text="Inventario" />
          </children>
       </Pane>
    </children>

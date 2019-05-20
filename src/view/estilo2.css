@@ -1,0 +1,47 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+    -fx-background-color: #003333;
+}
+
+.button{
+    -fx-background-color: linear-gradient(#006666, #009999);
+    -fx-text-fill: #ffffff;
+}
+
+
+.button:hover{
+    -fx-background-color: linear-gradient(#009999, #006666);
+}
+
+.button:pressed{
+    -fx-background-color: #009999;
+}
+
+.button:focused{
+    -fx-background-color: linear-gradient(#009999, #006666);
+    -fx-border-width: 0 0 0 0; 
+}
+
+.label{
+    -fx-text-fill: #ffffff;
+}
+
+.combo-box{
+    -fx-background-color: #006666;
+    -fx-text-fill: #ffffff;
+}
+
+.combo-box:hover{
+    -fx-background-color: #009999;
+}
+
+.text-field{
+    -fx-border-color: white;
+    -fx-border-width: 0 0 1 0; 
+    -fx-background-color: transparent;
+    -fx-prompt-text-fill: #ffffff;
+    -fx-text-fill: #ffffff;
+}

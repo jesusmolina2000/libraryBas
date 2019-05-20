@@ -3,13 +3,44 @@
  */
 
 .mainFxmlClass {
-    /*-fx-background-image: url('/image/fondo.jpg')*/
-}
-
-.text-field{
+    -fx-background-color: white;
 }
 
 .button{
-    -fx-background-radius: 15 15 15 15;
-    -fx-border-radius: 20 20 20 20;
+    -fx-background-color:  #009999;
+    -fx-text-fill: #ffffff;
+}
+
+.button:hover{
+    -fx-background-color:  #006666;
+}
+
+.button:pressed{
+    -fx-background-color: #66ffff;
+}
+
+.button:focused{
+    -fx-background-color: #66ffff;
+    -fx-border-color: gray;
+    -fx-border-width: 0 0 0 3; 
+}
+
+.label{
+    -fx-text-fill: #ffffff;
+}
+
+.combo-box{
+    -fx-border-color: black;
+    -fx-border-width: 0 0 1 0; 
+    -fx-background-color: transparent;
+    -fx-prompt-text-fill: black;
+    -fx-text-fill: black;
+}
+
+.text-field{
+    -fx-border-color: black;
+    -fx-border-width: 0 0 1 0; 
+    -fx-background-color: transparent;
+    -fx-prompt-text-fill: black;
+    -fx-text-fill: black;
 }

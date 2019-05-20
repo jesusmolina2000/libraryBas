@@ -6,7 +6,6 @@
 package view;
 
 import java.io.IOException;
-import java.net.URL;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,17 +18,17 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author 201811294029
+ * @author jesus
  */
 public class FormLibraryBas extends Application {
-
+    
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLLibraryBas.fxml"));
-
-        Scene scene = new Scene(root);
-
-        primaryStage.setTitle("LibraryBas");
+        
+        Scene scene = new Scene(root, 300, 250);
+        
+        primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -40,6 +39,5 @@ public class FormLibraryBas extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
     
 }
