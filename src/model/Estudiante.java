@@ -13,7 +13,7 @@ import javax.swing.ImageIcon;
  *
  * @author jesus
  */
-public class Estudiante extends NodoUsuario {
+public class Estudiante extends Usuario implements java.io.Serializable {
 
     private final StringProperty curso = new SimpleStringProperty();
 

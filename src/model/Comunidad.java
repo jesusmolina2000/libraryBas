@@ -6,24 +6,24 @@
 package model;
 
 import javax.swing.ImageIcon;
-import model.NodoUsuario;
+import model.Usuario;
 
 /**
  *
  * @author jesus
  */
-public class MultilistaComunidad {
+public class Comunidad implements java.io.Serializable{
 
-    private NodoUsuario nodo;
-    private MultilistaComunidad siguiente;
+    private Usuario nodo;
+    private Comunidad siguiente;
     
-    public MultilistaComunidad() {
+    public Comunidad() {
         nodo = null;
         siguiente = null;
     }
     
-    /*public NodoUsuario ultimoUsuario() {
-        NodoUsuario apuntador = usuario;
+    /*public Usuario ultimoUsuario() {
+        Usuario apuntador = usuario;
         while (apuntador != null) {
             if (apuntador.siguiente == null) {
                 return apuntador;
@@ -33,9 +33,9 @@ public class MultilistaComunidad {
         return null;
     }*/
     
-    public void insertarUsuario(MultilistaComunidad apuntador, String nombreUsuario, int codigoUsuario, String tipoUsuario, ImageIcon foto) {
+    public void insertarUsuario(Comunidad apuntador, String nombreUsuario, int codigoUsuario, String tipoUsuario, ImageIcon foto) {
         if(apuntador.nodo == null) {
-            NodoUsuario nuevoUsuario = null;
+            Usuario nuevoUsuario = null;
             switch (tipoUsuario) {
                 case "Estudiante":
                     nuevoUsuario = new Estudiante(nombreUsuario, codigoUsuario, tipoUsuario, foto);
@@ -48,13 +48,13 @@ public class MultilistaComunidad {
                     break;
             }
             nodo = nuevoUsuario;
-            siguiente = new MultilistaComunidad();
+            siguiente = new Comunidad();
         } else {
             insertarUsuario(apuntador.siguiente, nombreUsuario, codigoUsuario, tipoUsuario, foto);
         }
     }
     
-    public NodoUsuario buscarUsuarioId(MultilistaComunidad apuntador, int codigoUsuario) {
+    public Usuario buscarUsuarioId(Comunidad apuntador, int codigoUsuario) {
         if(apuntador.nodo != null) {
             if(apuntador.nodo.getCodigoUsuario() == codigoUsuario) {
                 return apuntador.nodo;

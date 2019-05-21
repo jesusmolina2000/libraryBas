@@ -14,22 +14,17 @@ import javafx.beans.property.StringProperty;
  *
  * @author 201811294029
  */
-public class NodoRecurso {
+public class Recurso implements java.io.Serializable {
 
-    private final StringProperty nombreProducto = new SimpleStringProperty();
-    private final IntegerProperty codigoProducto = new SimpleIntegerProperty();
+    private final StringProperty nombreRecurso = new SimpleStringProperty();
+    private final IntegerProperty codigoRecurso = new SimpleIntegerProperty();
     private final StringProperty tipo = new SimpleStringProperty();
-    public NodoRecurso siguiente;
 
-    public NodoRecurso() {
-        siguiente = null;
-    }
 
-    public NodoRecurso(String nombreProducto, int codigoProducto, String tipo) {
+    public Recurso(String nombreProducto, int codigoProducto, String tipo) {
         setCodigoProducto(codigoProducto);
         setTipo(tipo);
         setNombreProducto(nombreProducto);
-        siguiente = null;
     }
 
     public String getTipo() {
@@ -45,27 +40,27 @@ public class NodoRecurso {
     }
 
     public int getCodigoProducto() {
-        return codigoProducto.get();
+        return codigoRecurso.get();
     }
 
     public void setCodigoProducto(int value) {
-        codigoProducto.set(value);
+        codigoRecurso.set(value);
     }
 
     public IntegerProperty codigoProductoProperty() {
-        return codigoProducto;
+        return codigoRecurso;
     }
 
     public String getNombreProducto() {
-        return nombreProducto.get();
+        return nombreRecurso.get();
     }
 
     public void setNombreProducto(String value) {
-        nombreProducto.set(value);
+        nombreRecurso.set(value);
     }
 
     public StringProperty nombreProductoProperty() {
-        return nombreProducto;
+        return nombreRecurso;
     }
 
 }

@@ -9,10 +9,10 @@ package model;
  *
  * @author mariomerco
  */
-public class Biblioteca {
+public class Biblioteca implements java.io.Serializable {
 
-    private Inventario inventario;
-    private MultilistaComunidad comunidad;
+    public Inventario inventario;
+    public Comunidad comunidad;
     
     
 }

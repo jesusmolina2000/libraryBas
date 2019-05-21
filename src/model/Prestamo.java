@@ -10,18 +10,18 @@ import java.util.Date;
  *
  * @author jesus
  */
-public class Prestamo {
+public class Prestamo implements java.io.Serializable{
 
     public Prestamo siguiente;
     
-    private NodoRecurso recurso;
-    private NodoUsuario usuario;
+    private Recurso recurso;
+    private Usuario usuario;
     private Date fechaDevolucion;
     private Date fechaPrestamo;
     private Date fechaLimite;
-    private Multa multas;
+    private Multa multa;
 
-    public Prestamo(NodoRecurso recurso, NodoUsuario usuario, Date fechaPrestamo, Date fechaLimite) {
+    public Prestamo(Recurso recurso, Usuario usuario, Date fechaPrestamo, Date fechaLimite) {
         siguiente=null;
         this.recurso = recurso;
         this.usuario = usuario;
@@ -46,6 +46,10 @@ public class Prestamo {
     }
     
     public void multar(int valor) {
-        multas.insertarMulta(new Multa(valor));
+        multa = new Multa(valor);
+    }
+    
+    public void pagarMulta(){
+        multa.pagar();
     }
 }

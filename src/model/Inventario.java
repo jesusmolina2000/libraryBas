@@ -1,22 +1,31 @@
 package model;
 
 import javax.swing.JOptionPane;
-import model.NodoRecurso;
+import lista.ListaPrestamo;
+import lista.ListaRecurso;
+import model.Recurso;
 
 /**
  *
- * @author 201811294029
+ * @author jesus
  */
-public class Inventario {
+public class Inventario implements java.io.Serializable{
+    
+    public ListaRecurso listaRecurso;
+    public ListaPrestamo listaPrestamo;
+    
+    
+    
+    
 
-    public NodoRecurso recurso;
+ /*   public Recurso recurso;
 
     public Inventario() {
         recurso = null;
     }
 
     public void añadirRecursoAInventario(String nombreProducto, int codigoProducto, String tipo) {
-        NodoRecurso nuevoRecurso = new NodoRecurso(nombreProducto, codigoProducto, tipo);
+        Recurso nuevoRecurso = new Recurso(nombreProducto, codigoProducto, tipo);
         if (recurso == null) {
             recurso = nuevoRecurso;
         } else {
@@ -26,8 +35,8 @@ public class Inventario {
         }
     }
 
-    public NodoRecurso buscarRecursoNombre(String nombreProducto) {
-        NodoRecurso buscarRecurso = recurso;
+    public Recurso buscarRecursoNombre(String nombreProducto) {
+        Recurso buscarRecurso = recurso;
         while (buscarRecurso != null) {
             if (buscarRecurso.nombreProductoProperty().equals(nombreProducto)) {
                 return buscarRecurso;
@@ -37,8 +46,8 @@ public class Inventario {
         return null;
     }
 
-    public NodoRecurso buscarRecursoCodigo(int codigoProducto) {
-        NodoRecurso buscarRecurso = recurso;
+    public Recurso buscarRecursoCodigo(int codigoProducto) {
+        Recurso buscarRecurso = recurso;
         while (buscarRecurso != null) {
             if (buscarRecurso.codigoProductoProperty().toString().equals(codigoProducto)) {
                 return buscarRecurso;
@@ -48,8 +57,8 @@ public class Inventario {
         return null;
     }
 
-    public void eliminar(NodoRecurso recurso, int codigoProducto) {
-        NodoRecurso E = buscarRecursoCodigo(codigoProducto);
+    public void eliminar(Recurso recurso, int codigoProducto) {
+        Recurso E = buscarRecursoCodigo(codigoProducto);
 
         if (E != null) {
             if (E == recurso) {
@@ -73,4 +82,5 @@ public class Inventario {
         }
     }
 
+*/
 }

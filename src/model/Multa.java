@@ -9,23 +9,22 @@ package model;
  *
  * @author jesus
  */
-public class Multa {
+public class Multa implements java.io.Serializable {
     private int valor;
     private boolean pagada;
     
-    Multa siguiente;
     
     public Multa(int valor) {
         this.valor = valor;
         this.pagada = false;
-        siguiente = null;
     }
     
-    public void insertarMulta(Multa multa) {
-        
-    }
-    
-    public void pagarMulta() {
+    public void pagar() {
         pagada = true;
     }
+
+    public boolean isPagada() {
+        return pagada;
+    }
+    
 }

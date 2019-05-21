@@ -15,13 +15,13 @@ import javax.swing.ImageIcon;
  *
  * @author jesus
  */
-public class NodoUsuario implements java.io.Serializable {
+public class Usuario implements java.io.Serializable {
 
     private final StringProperty nombreUsuario = new SimpleStringProperty();
     private final IntegerProperty codigoUsuario = new SimpleIntegerProperty();
     private ImageIcon foto;
 
-    public NodoUsuario(String nommbreUsuario, int codigoUsuario, ImageIcon foto) {
+    public Usuario(String nommbreUsuario, int codigoUsuario, ImageIcon foto) {
         setNombreUsuario(nommbreUsuario);
         setCodigoUsuario(codigoUsuario);
         setFoto(foto);

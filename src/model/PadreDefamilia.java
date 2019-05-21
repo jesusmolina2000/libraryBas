@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
  *
  * @author jesus
  */
-public class PadreDefamilia extends NodoUsuario{
+public class PadreDefamilia extends Usuario implements java.io.Serializable{
     
     public PadreDefamilia(String nommbreUsuario, int codigoUsuario, ImageIcon foto) {
         super(nommbreUsuario, codigoUsuario, foto);
