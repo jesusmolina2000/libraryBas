@@ -9,25 +9,22 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author jesus
  */
-public class NodoUsuario {
+public class NodoUsuario implements java.io.Serializable {
 
     private final StringProperty nombreUsuario = new SimpleStringProperty();
     private final IntegerProperty codigoUsuario = new SimpleIntegerProperty();
-    public NodoUsuario siguiente;
+    private ImageIcon foto;
 
-    public NodoUsuario() {
-        siguiente = null;
-    }
-
-    public NodoUsuario(String nommbreUsuario, int codigoUsuario) {
+    public NodoUsuario(String nommbreUsuario, int codigoUsuario, ImageIcon foto) {
         setNombreUsuario(nommbreUsuario);
         setCodigoUsuario(codigoUsuario);
-        siguiente = null;
+        setFoto(foto);
     }
 
     public int getCodigoUsuario() {
@@ -52,6 +49,14 @@ public class NodoUsuario {
 
     public StringProperty nombreUsuarioProperty() {
         return nombreUsuario;
+    }
+    
+    public void setFoto(ImageIcon foto) {
+        this.foto = foto;
+    }
+    
+    public ImageIcon getFoto() {
+        return foto;
     }
 
 }

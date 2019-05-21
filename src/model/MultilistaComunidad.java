@@ -5,6 +5,7 @@
  */
 package model;
 
+import javax.swing.ImageIcon;
 import model.NodoUsuario;
 
 /**
@@ -13,52 +14,53 @@ import model.NodoUsuario;
  */
 public class MultilistaComunidad {
 
-    public NodoUsuario usuario;
-
+    private NodoUsuario nodo;
+    private MultilistaComunidad siguiente;
+    
     public MultilistaComunidad() {
-        usuario = null;
+        nodo = null;
+        siguiente = null;
     }
-
-    //
-    public void insertarUsuario(String nombreUsuario, int codigoUsuario, String tipoUsuario) {
-        NodoUsuario ultimoUsuario = ultimoUsuario();
-        NodoUsuario nuevoUsuario = null;
-        switch (tipoUsuario) {
-            case "Estudiante":
-                nuevoUsuario = new Estudiante(nombreUsuario, codigoUsuario, tipoUsuario);
-                break;
-            case "Docente":
-                nuevoUsuario = new Docente(nombreUsuario, codigoUsuario, nombreUsuario);
-                break;
-            case "Padre de familia":
-                nuevoUsuario = new PadreDefamilia(nombreUsuario, codigoUsuario);
-                break;
-        }
-        if (ultimoUsuario != null) {
-            ultimoUsuario.siguiente = nuevoUsuario;
-        } else {
-            usuario = nuevoUsuario;
-        }
-    }
-
-    public NodoUsuario buscarUsuarioNombre(String nombreUsuario) {
-        NodoUsuario usuarioBuscar = usuario;
-        while (usuarioBuscar != null) {
-            if (usuarioBuscar.getNombreUsuario().equals(nombreUsuario)) {
-                return usuarioBuscar;
-            }
-            usuarioBuscar = usuarioBuscar.siguiente;
-        }
-        return null;
-    }
-
-    public NodoUsuario ultimoUsuario() {
+    
+    /*public NodoUsuario ultimoUsuario() {
         NodoUsuario apuntador = usuario;
         while (apuntador != null) {
             if (apuntador.siguiente == null) {
                 return apuntador;
             }
             apuntador = apuntador.siguiente;
+        }
+        return null;
+    }*/
+    
+    public void insertarUsuario(MultilistaComunidad apuntador, String nombreUsuario, int codigoUsuario, String tipoUsuario, ImageIcon foto) {
+        if(apuntador.nodo == null) {
+            NodoUsuario nuevoUsuario = null;
+            switch (tipoUsuario) {
+                case "Estudiante":
+                    nuevoUsuario = new Estudiante(nombreUsuario, codigoUsuario, tipoUsuario, foto);
+                    break;
+                case "Docente":
+                    nuevoUsuario = new Docente(nombreUsuario, codigoUsuario, nombreUsuario, foto);
+                    break;
+                case "Padre de familia":
+                    nuevoUsuario = new PadreDefamilia(nombreUsuario, codigoUsuario, foto);
+                    break;
+            }
+            nodo = nuevoUsuario;
+            siguiente = new MultilistaComunidad();
+        } else {
+            insertarUsuario(apuntador.siguiente, nombreUsuario, codigoUsuario, tipoUsuario, foto);
+        }
+    }
+    
+    public NodoUsuario buscarUsuarioId(MultilistaComunidad apuntador, int codigoUsuario) {
+        if(apuntador.nodo != null) {
+            if(apuntador.nodo.getCodigoUsuario() == codigoUsuario) {
+                return apuntador.nodo;
+            } else {
+                return buscarUsuarioId(apuntador.siguiente, codigoUsuario);
+            }
         }
         return null;
     }

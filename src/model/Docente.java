@@ -7,6 +7,7 @@ package model;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -16,11 +17,8 @@ public class Docente extends NodoUsuario {
 
     private final StringProperty asignatura = new SimpleStringProperty();
 
-    public Docente() {
-    }
-
-    public Docente(String nommbreUsuario, int codigoUsuario, String nombreAsignatura) {
-        super(nommbreUsuario, codigoUsuario);
+    public Docente(String nommbreUsuario, int codigoUsuario, String nombreAsignatura, ImageIcon foto) {
+        super(nommbreUsuario, codigoUsuario, foto);
         setAsignatura(nombreAsignatura);
     }
 

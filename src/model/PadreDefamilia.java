@@ -5,19 +5,16 @@
  */
 package model;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author jesus
  */
 public class PadreDefamilia extends NodoUsuario{
-
-    public PadreDefamilia() {
+    
+    public PadreDefamilia(String nommbreUsuario, int codigoUsuario, ImageIcon foto) {
+        super(nommbreUsuario, codigoUsuario, foto);
     }
-    
-    public PadreDefamilia(String nommbreUsuario, int codigoUsuario) {
-        super(nommbreUsuario, codigoUsuario);
-    }
-  
-    
-    
+     
 }

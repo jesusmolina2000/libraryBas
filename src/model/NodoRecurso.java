@@ -20,11 +20,9 @@ public class NodoRecurso {
     private final IntegerProperty codigoProducto = new SimpleIntegerProperty();
     private final StringProperty tipo = new SimpleStringProperty();
     public NodoRecurso siguiente;
-    public NodoRecurso anterior;
 
     public NodoRecurso() {
         siguiente = null;
-        anterior = null;
     }
 
     public NodoRecurso(String nombreProducto, int codigoProducto, String tipo) {
@@ -32,7 +30,6 @@ public class NodoRecurso {
         setTipo(tipo);
         setNombreProducto(nombreProducto);
         siguiente = null;
-        anterior = null;
     }
 
     public String getTipo() {
