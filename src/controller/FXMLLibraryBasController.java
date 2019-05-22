@@ -6,6 +6,9 @@
 package controller;
 
 import java.awt.Color;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -16,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -23,6 +27,10 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import javax.swing.JOptionPane;
+import model.Comunidad;
 
 /**
  * FXML Controller class
@@ -88,6 +96,12 @@ public class FXMLLibraryBasController implements Initializable {
     @FXML
     private TextField textNombre;
 
+    
+    private Comunidad comunidad;
+    @FXML
+    private Button botonAgregarFoto;
+    @FXML
+    private ImageView imageViewFoto;
     /**
      * Initializes the controller class.
      *
@@ -98,8 +112,9 @@ public class FXMLLibraryBasController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         comboBoxTipo.getItems().addAll("CD", "Revista", "Libro");
-        comboBoxRol.getItems().addAll("Estudiante", "Padre de familia",
-                "Docente");
+        comboBoxRol.getItems().addAll("Estudiante", "Docente",
+                "Padre de familia");
+        comunidad = new Comunidad();
     }
 
     @FXML
@@ -130,6 +145,32 @@ public class FXMLLibraryBasController implements Initializable {
     @FXML
     private void setOnMouseClickedImageViewMinimize(MouseEvent event) {
 
+    }
+
+    @FXML
+    private void setOnMouseClickedbuttonAñadirUsuario(MouseEvent event) {
+        String nombreUsuario = textNombreUsuario.getText();
+        int codigoUsuario = Integer.parseInt(textIdUsuario.getText());
+        String tipo = comboBoxRol.getValue();
+        Image foto = imageViewFoto.getImage();
+        comunidad.insertarUsuario(comunidad, nombreUsuario, codigoUsuario, tipo, foto);
+        JOptionPane.showMessageDialog(null, "!Agregado con exito¡");
+        
+        textNombreUsuario.setText("");
+        textIdUsuario.setText("");
+        imageViewFoto.imageProperty().set(null);
+        //comboBoxRol.setPromptText("Rol");
+    }
+
+    @FXML
+    private void agregarFoto(ActionEvent event) throws FileNotFoundException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Archivos JPG", "*.jpg"), new ExtensionFilter("Archivos PNG", "*.png"));
+        fileChooser.setTitle("Abrir archivo de foto");
+        File archivo = fileChooser.showOpenDialog(null);
+        
+        Image image = new Image(new FileInputStream(archivo.getPath()));
+        imageViewFoto.setImage(image);
     }
 
 }

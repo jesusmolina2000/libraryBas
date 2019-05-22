@@ -5,7 +5,7 @@
  */
 package model;
 
-import javax.swing.ImageIcon;
+import javafx.scene.image.Image;
 
 /**
  *
@@ -13,7 +13,7 @@ import javax.swing.ImageIcon;
  */
 public class PadreDefamilia extends Usuario implements java.io.Serializable{
     
-    public PadreDefamilia(String nommbreUsuario, int codigoUsuario, ImageIcon foto) {
+    public PadreDefamilia(String nommbreUsuario, int codigoUsuario, Image foto) {
         super(nommbreUsuario, codigoUsuario, foto);
     }
      

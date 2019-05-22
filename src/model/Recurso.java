@@ -20,10 +20,10 @@ public class Recurso implements java.io.Serializable {
     private final IntegerProperty codigoRecurso = new SimpleIntegerProperty();
     private final StringProperty tipo = new SimpleStringProperty();
 
-    public Recurso(String nombreProducto, int codigoProducto, String tipo) {
-        setCodigoProducto(codigoProducto);
+    public Recurso(String nombreRecurso, int codigoRecurso, String tipo) {
+        setCodigoRecurso(codigoRecurso);
         setTipo(tipo);
-        setNombreProducto(nombreProducto);
+        setNombreRecurso(nombreRecurso);
     }
 
     public String getTipo() {
@@ -38,27 +38,27 @@ public class Recurso implements java.io.Serializable {
         return tipo;
     }
 
-    public int getCodigoProducto() {
+    public int getCodigoRecurso() {
         return codigoRecurso.get();
     }
 
-    public void setCodigoProducto(int value) {
+    public void setCodigoRecurso(int value) {
         codigoRecurso.set(value);
     }
 
-    public IntegerProperty codigoProductoProperty() {
+    public IntegerProperty codigoRecurso() {
         return codigoRecurso;
     }
 
-    public String getNombreProducto() {
+    public String getNombreRecurso() {
         return nombreRecurso.get();
     }
 
-    public void setNombreProducto(String value) {
+    public void setNombreRecurso(String value) {
         nombreRecurso.set(value);
     }
 
-    public StringProperty nombreProductoProperty() {
+    public StringProperty nombreRecursoProperty() {
         return nombreRecurso;
     }
 

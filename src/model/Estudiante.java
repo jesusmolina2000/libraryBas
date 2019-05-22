@@ -7,7 +7,7 @@ package model;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javax.swing.ImageIcon;
+import javafx.scene.image.Image;
 
 /**
  *
@@ -18,7 +18,7 @@ public class Estudiante extends Usuario implements java.io.Serializable {
     private final StringProperty curso = new SimpleStringProperty();
 
 
-    public Estudiante(String nommbreUsuario, int codigoUsuario, String curso, ImageIcon foto) {
+    public Estudiante(String nommbreUsuario, int codigoUsuario, String curso, Image foto) {
         super(nommbreUsuario, codigoUsuario, foto);
         setCurso(curso);
     }

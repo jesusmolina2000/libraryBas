@@ -5,6 +5,7 @@
  */
 package model;
 
+import javafx.scene.image.Image;
 import javax.swing.ImageIcon;
 import model.Usuario;
 
@@ -12,16 +13,16 @@ import model.Usuario;
  *
  * @author jesus
  */
-public class Comunidad implements java.io.Serializable{
+public class Comunidad implements java.io.Serializable {
 
     private Usuario nodo;
     private Comunidad siguiente;
-    
+
     public Comunidad() {
         nodo = null;
         siguiente = null;
     }
-    
+
     /*public Usuario ultimoUsuario() {
         Usuario apuntador = usuario;
         while (apuntador != null) {
@@ -32,9 +33,8 @@ public class Comunidad implements java.io.Serializable{
         }
         return null;
     }*/
-    
-    public void insertarUsuario(Comunidad apuntador, String nombreUsuario, int codigoUsuario, String tipoUsuario, ImageIcon foto) {
-        if(apuntador.nodo == null) {
+    public void insertarUsuario(Comunidad apuntador, String nombreUsuario, int codigoUsuario, String tipoUsuario, Image foto) {
+        if (apuntador.nodo == null) {
             Usuario nuevoUsuario = null;
             switch (tipoUsuario) {
                 case "Estudiante":
@@ -53,16 +53,43 @@ public class Comunidad implements java.io.Serializable{
             insertarUsuario(apuntador.siguiente, nombreUsuario, codigoUsuario, tipoUsuario, foto);
         }
     }
-    
+
     public Usuario buscarUsuarioId(Comunidad apuntador, int codigoUsuario) {
-        if(apuntador.nodo != null) {
-            if(apuntador.nodo.getCodigoUsuario() == codigoUsuario) {
+        if (apuntador.nodo != null) {
+            if (apuntador.nodo.getCodigoUsuario() == codigoUsuario) {
                 return apuntador.nodo;
             } else {
                 return buscarUsuarioId(apuntador.siguiente, codigoUsuario);
             }
         }
         return null;
+    }
+
+    public void eliminarUsuario(Comunidad apuntador, int codigoUsuario) {
+        Comunidad temp = apuntador;
+        Comunidad anterior = null;
+
+        if (temp != null && temp.nodo.getCodigoUsuario() == codigoUsuario) {
+            apuntador = apuntador.siguiente;
+            return;
+        }
+
+        while (temp != null && temp.nodo.getCodigoUsuario() != codigoUsuario) {
+            anterior = temp;
+            temp = temp.siguiente;
+        }
+
+        if (temp == null) {
+            return;
+        }
+
+        anterior.siguiente = temp.siguiente;
+    }
+
+    public void actualizarUsuario(String nombreUsuario, int codigoUsuario, String tipoUsuario, Image foto) {
+        Usuario usuario = buscarUsuarioId(this, codigoUsuario);
+        usuario.setNombreUsuario(nombreUsuario);
+        usuario.setFoto(foto);
     }
 
 }

@@ -31,22 +31,22 @@ public class ListaRecurso implements java.io.Serializable {
         return null;
     }*/
     
-    public void insertarUsuario(ListaRecurso apuntador, String nombreProducto, int codigoProducto, String tipo) {
+    public void insertarRecurso(ListaRecurso apuntador, String nombreRecurso, int codigoRecurso, String tipo) {
         if(apuntador.nodo == null) {
             Recurso nuevoRecurso = null;
             nodo = nuevoRecurso;
             siguiente = new ListaRecurso();
         } else {
-            insertarUsuario(apuntador.siguiente, nombreProducto, codigoProducto, tipo);
+            insertarRecurso(apuntador.siguiente, nombreRecurso, codigoRecurso, tipo);
         }
     }
     
-    public Recurso buscarRecursoId(ListaRecurso apuntador, int codigoProducto) {
+    public Recurso buscarRecursoId(ListaRecurso apuntador, int codigoRecurso) {
         if(apuntador.nodo != null) {
-            if(apuntador.nodo.getCodigoProducto() == codigoProducto) {
+            if(apuntador.nodo.getCodigoRecurso() == codigoRecurso) {
                 return apuntador.nodo;
             } else {
-                return buscarRecursoId(apuntador.siguiente, codigoProducto);
+                return buscarRecursoId(apuntador.siguiente, codigoRecurso);
             }
         }
         return null;
@@ -57,12 +57,12 @@ public class ListaRecurso implements java.io.Serializable {
         ListaRecurso anterior = null;
         
         
-        if(temp != null && temp.nodo.getCodigoProducto() == codigoRecurso) {
+        if(temp != null && temp.nodo.getCodigoRecurso() == codigoRecurso) {
             apuntador = apuntador.siguiente;
             return;
         }
         
-        while(temp != null && temp.nodo.getCodigoProducto() != codigoRecurso) {
+        while(temp != null && temp.nodo.getCodigoRecurso() != codigoRecurso) {
             anterior = temp;
             temp = temp.siguiente;
         }
@@ -73,5 +73,11 @@ public class ListaRecurso implements java.io.Serializable {
         }
         
         anterior.siguiente = temp.siguiente;
+    }
+    
+    public void actualizarRecurso(String nombreRecurso, int codigoRecurso, String tipo) {
+        Recurso recurso = buscarRecursoId(this, codigoRecurso);
+        recurso.setNombreRecurso(nombreRecurso);
+        recurso.setTipo(tipo);
     }
 }

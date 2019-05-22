@@ -9,6 +9,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.image.Image;
 import javax.swing.ImageIcon;
 
 /**
@@ -19,9 +20,9 @@ public class Usuario implements java.io.Serializable {
 
     private final StringProperty nombreUsuario = new SimpleStringProperty();
     private final IntegerProperty codigoUsuario = new SimpleIntegerProperty();
-    private ImageIcon foto;
+    private Image foto;
 
-    public Usuario(String nommbreUsuario, int codigoUsuario, ImageIcon foto) {
+    public Usuario(String nommbreUsuario, int codigoUsuario, Image foto) {
         setNombreUsuario(nommbreUsuario);
         setCodigoUsuario(codigoUsuario);
         setFoto(foto);
@@ -51,11 +52,11 @@ public class Usuario implements java.io.Serializable {
         return nombreUsuario;
     }
     
-    public void setFoto(ImageIcon foto) {
+    public void setFoto(Image foto) {
         this.foto = foto;
     }
     
-    public ImageIcon getFoto() {
+    public Image getFoto() {
         return foto;
     }
 

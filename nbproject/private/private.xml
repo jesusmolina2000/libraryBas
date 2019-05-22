@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/jesus/Documents/libraryBas/src/model/Docente.java</file>
+            <file>file:/C:/Users/jesus/Documents/libraryBas/src/controller/FXMLLibraryBasController.java</file>
+            <file>file:/C:/Users/jesus/Documents/libraryBas/src/model/Usuario.java</file>
+            <file>file:/C:/Users/jesus/Documents/libraryBas/src/model/Comunidad.java</file>
+            <file>file:/C:/Users/jesus/Documents/libraryBas/src/model/PadreDefamilia.java</file>
+            <file>file:/C:/Users/jesus/Documents/libraryBas/src/model/Estudiante.java</file>
+        </group>
     </open-files>
 </project-private>
