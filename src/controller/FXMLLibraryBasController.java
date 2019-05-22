@@ -75,6 +75,18 @@ public class FXMLLibraryBasController implements Initializable {
     private Button buttonInsertarRecurso;
     @FXML
     private Button buttonEliminarRecurso;
+    @FXML
+    private TextField textIdUsuarioDevolucion;
+    @FXML
+    private Button buttonDevolver;
+    @FXML
+    private Button buttonMultar;
+    @FXML
+    private Button buttonPagarMulta;
+    @FXML
+    private TextField textIdUsuarioMulta;
+    @FXML
+    private TextField textNombre;
 
     /**
      * Initializes the controller class.

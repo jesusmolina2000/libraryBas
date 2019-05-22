@@ -20,7 +20,6 @@ public class Recurso implements java.io.Serializable {
     private final IntegerProperty codigoRecurso = new SimpleIntegerProperty();
     private final StringProperty tipo = new SimpleStringProperty();
 
-
     public Recurso(String nombreProducto, int codigoProducto, String tipo) {
         setCodigoProducto(codigoProducto);
         setTipo(tipo);
