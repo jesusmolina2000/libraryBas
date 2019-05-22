@@ -149,7 +149,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.rowIndex="1">
                      <children>
-                        <Button fx:id="buttonInsertarRecurso" mnemonicParsing="false" prefHeight="25.0" prefWidth="246.0" stylesheets="@estilo2.css" text="Insertar recurso" />
+                        <Button fx:id="buttonInsertarRecurso" mnemonicParsing="false" onAction="#setOnMouseClickedbuttonAñadirRecurso" prefHeight="25.0" prefWidth="246.0" stylesheets="@estilo2.css" text="Insertar recurso" />
                         <Button fx:id="buttonEliminarRecurso" mnemonicParsing="false" prefHeight="25.0" prefWidth="249.0" stylesheets="@estilo2.css" text="Eliminar recurso" />
                      </children>
                   </HBox>

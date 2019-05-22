@@ -30,6 +30,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javax.swing.JOptionPane;
+import lista.ListaRecurso;
 import model.Comunidad;
 
 /**
@@ -96,12 +97,13 @@ public class FXMLLibraryBasController implements Initializable {
     @FXML
     private TextField textNombre;
 
-    
+    private ListaRecurso listaRecurso;
     private Comunidad comunidad;
     @FXML
     private Button botonAgregarFoto;
     @FXML
     private ImageView imageViewFoto;
+
     /**
      * Initializes the controller class.
      *
@@ -111,10 +113,11 @@ public class FXMLLibraryBasController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        comboBoxTipo.getItems().addAll("CD", "Revista", "Libro");
-        comboBoxRol.getItems().addAll("Estudiante", "Docente",
+        comboBoxTipo.getItems().addAll("Seleccione tipo", "CD", "Revista", "Libro");
+        comboBoxRol.getItems().addAll("Seleccione rol", "Estudiante", "Docente",
                 "Padre de familia");
         comunidad = new Comunidad();
+        listaRecurso = new ListaRecurso();
     }
 
     @FXML
@@ -155,11 +158,11 @@ public class FXMLLibraryBasController implements Initializable {
         Image foto = imageViewFoto.getImage();
         comunidad.insertarUsuario(comunidad, nombreUsuario, codigoUsuario, tipo, foto);
         JOptionPane.showMessageDialog(null, "!Agregado con exito¡");
-        
+
         textNombreUsuario.setText("");
         textIdUsuario.setText("");
         imageViewFoto.imageProperty().set(null);
-        //comboBoxRol.setPromptText("Rol");
+        comboBoxRol.getSelectionModel().select(0);
     }
 
     @FXML
@@ -168,9 +171,24 @@ public class FXMLLibraryBasController implements Initializable {
         fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Archivos JPG", "*.jpg"), new ExtensionFilter("Archivos PNG", "*.png"));
         fileChooser.setTitle("Abrir archivo de foto");
         File archivo = fileChooser.showOpenDialog(null);
-        
+
         Image image = new Image(new FileInputStream(archivo.getPath()));
         imageViewFoto.setImage(image);
+    }
+
+    @FXML
+    private void setOnMouseClickedbuttonAñadirRecurso(ActionEvent event) {
+        String nombreRecurso = textNombre.getText();
+        int codigoRecurso = Integer.parseInt(textId.getText());
+        String tipo = comboBoxTipo.getValue();
+        listaRecurso.insertarRecurso(listaRecurso, nombreRecurso, codigoRecurso, tipo);
+
+    }
+
+    @FXML
+    private void setOnMouseClickedbuttonEliminarRecurso(ActionEvent event) {
+        int codigoRecurso = Integer.parseInt(textId.getText());
+        listaRecurso.eliminarRecurso(listaRecurso, codigoRecurso);
     }
 
 }
