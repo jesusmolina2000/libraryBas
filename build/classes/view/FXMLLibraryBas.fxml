@@ -99,24 +99,6 @@
                   <Button fx:id="buttonDevolver" mnemonicParsing="false" prefHeight="25.0" prefWidth="186.0" stylesheets="@estilo2.css" text="Devolver articulo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
-            <GridPane fx:id="gridPanePrestamo" layoutX="215.0" style="-fx-background-color: white;">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Button fx:id="buttonRealizarPrestamo" mnemonicParsing="false" prefHeight="25.0" prefWidth="194.0" stylesheets="@estilo2.css" text="Realizar prestamo" GridPane.rowIndex="2" />
-                  <DatePicker fx:id="datePickerFechaPrestamo" promptText="Seleccione fecha" stylesheets="@estilo2.css" GridPane.columnIndex="1" />
-                  <DatePicker fx:id="datePickerFechaLimite" promptText="seleccione fecha" stylesheets="@estilo2.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="textCodigoUsuarioPrestamo" promptText="Ingrese codido de usuario" />
-                  <TextField fx:id="textCodigoRecurso" prefHeight="26.0" prefWidth="190.0" promptText="Ingrese codigo de recurso" GridPane.rowIndex="1" />
-               </children>
-            </GridPane>
             <GridPane fx:id="gridPaneUsuario" style="-fx-background-color: white;">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -166,6 +148,24 @@
                         <TableColumn prefWidth="347.0" text="Nombre recurso" />
                     </columns>
                   </TableView>
+               </children>
+            </GridPane>
+            <GridPane fx:id="gridPanePrestamo" layoutX="215.0" style="-fx-background-color: white;">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="buttonRealizarPrestamo" mnemonicParsing="false" onAction="#setOnActionButtonRealizarPrestamo" prefHeight="25.0" prefWidth="194.0" stylesheets="@estilo2.css" text="Realizar prestamo" GridPane.rowIndex="2" />
+                  <DatePicker fx:id="datePickerFechaPrestamo" prefHeight="23.0" prefWidth="192.0" promptText="Seleccione fecha de prestamo" stylesheets="@estilo2.css" GridPane.columnIndex="1" />
+                  <DatePicker fx:id="datePickerFechaLimite" prefHeight="27.0" prefWidth="211.0" promptText="Seleccione fecha limite devolucion" stylesheets="@estilo2.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="textCodigoUsuarioPrestamo" promptText="Ingrese codido de usuario" />
+                  <TextField fx:id="textCodigoRecurso" prefHeight="26.0" prefWidth="190.0" promptText="Ingrese codigo de recurso" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </children>

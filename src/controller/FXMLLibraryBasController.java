@@ -211,4 +211,12 @@ public class FXMLLibraryBasController implements Initializable {
         Image image = new Image(new FileInputStream(archivo.getPath()));
         imageViewFoto.setImage(image);
     }
+
+    @FXML
+    private void setOnActionButtonRealizarPrestamo(ActionEvent event) {
+        
+    }
+    
+    
+    
 }

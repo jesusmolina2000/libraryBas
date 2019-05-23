@@ -28,6 +28,8 @@ public class ListaPrestamo implements java.io.Serializable {
         } else {
             insertarPrestamo(apuntador.siguiente, nombreProducto, codigoProducto, tipo);
         }
+        
+        
     }
     
     
