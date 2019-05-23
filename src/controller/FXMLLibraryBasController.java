@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -29,6 +30,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import lista.ListaRecurso;
 import model.Comunidad;
@@ -147,7 +149,8 @@ public class FXMLLibraryBasController implements Initializable {
 
     @FXML
     private void setOnMouseClickedImageViewMinimize(MouseEvent event) {
-
+        Stage s = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        s.setIconified(true);
     }
 
     @FXML
