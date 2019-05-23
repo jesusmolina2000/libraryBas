@@ -170,6 +170,10 @@ public class FXMLLibraryBasController implements Initializable {
         int codigoRecurso = Integer.parseInt(textId.getText());
         String tipo = comboBoxTipo.getValue();
         listaRecurso.insertarRecurso(listaRecurso, nombreRecurso, codigoRecurso, tipo);
+        JOptionPane.showMessageDialog(null,"El recurso se añadio exitosamente");
+        textNombre.setText("");
+        textId.setText("");
+        comboBoxTipo.getSelectionModel().select(0);
 
     }
 
@@ -177,6 +181,10 @@ public class FXMLLibraryBasController implements Initializable {
     private void setOnActionButtonEliminarRecurso(ActionEvent event) {
         int codigoRecurso = Integer.parseInt(textId.getText());
         listaRecurso.eliminarRecurso(listaRecurso, codigoRecurso);
+        JOptionPane.showMessageDialog(null,"El recurso se elimino exitosamente");
+        textNombre.setText("");
+        textId.setText("");
+        comboBoxTipo.getSelectionModel().select(0);
     }
 
     @FXML
@@ -187,7 +195,6 @@ public class FXMLLibraryBasController implements Initializable {
         Image foto = imageViewFoto.getImage();
         comunidad.insertarUsuario(comunidad, nombreUsuario, codigoUsuario, tipo, foto);
         JOptionPane.showMessageDialog(null, "!Agregado con exito¡");
-
         textNombreUsuario.setText("");
         textIdUsuario.setText("");
         imageViewFoto.imageProperty().set(null);
@@ -201,7 +208,6 @@ public class FXMLLibraryBasController implements Initializable {
                 + " JPG", "*.jpg"), new ExtensionFilter("Archivos PNG", "*.png"));
         fileChooser.setTitle("Abrir archivo de foto");
         File archivo = fileChooser.showOpenDialog(null);
-
         Image image = new Image(new FileInputStream(archivo.getPath()));
         imageViewFoto.setImage(image);
     }
