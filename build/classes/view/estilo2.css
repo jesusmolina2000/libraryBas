@@ -3,12 +3,14 @@
  */
 
 .mainFxmlClass {
-    -fx-background-color: #003333;
 }
 
 .button{
     -fx-background-color: linear-gradient(#006666, #009999);
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: black;
+    -fx-background-radius: 15 15 15 15;
+    -fx-border-radius: 15 15 15 15;
+    -fx-font-family: "Times New Roman";
 }
 
 
@@ -39,13 +41,14 @@
 }
 
 .text-field{
-    -fx-border-color: white;
+    -fx-border-color: black;
     -fx-border-width: 0 0 1 0; 
     -fx-background-color: transparent;
-    -fx-prompt-text-fill: #ffffff;
-    -fx-text-fill: #ffffff;
+    -fx-prompt-text-fill: black;
+    -fx-text-fill: black;
+    -fx-font-family: "Times New Roman";
 }
 
 .date-picker{
-    -fx-background-color: black;
+    -fx-background-color: transparent;
 }

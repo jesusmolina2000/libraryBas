@@ -18,6 +18,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -41,6 +42,9 @@ import model.Comunidad;
  * @author Isaac
  */
 public class FXMLLibraryBasController implements Initializable {
+
+    private ListaRecurso listaRecurso;
+    private Comunidad comunidad;
 
     @FXML
     private ImageView imageViewClose;
@@ -98,13 +102,20 @@ public class FXMLLibraryBasController implements Initializable {
     private TextField textIdUsuarioMulta;
     @FXML
     private TextField textNombre;
-
-    private ListaRecurso listaRecurso;
-    private Comunidad comunidad;
-    @FXML
-    private Button botonAgregarFoto;
     @FXML
     private ImageView imageViewFoto;
+    @FXML
+    private Button buttonRealizarPrestamo;
+    @FXML
+    private DatePicker datePickerFechaPrestamo;
+    @FXML
+    private DatePicker datePickerFechaLimite;
+    @FXML
+    private TextField textCodigoUsuarioPrestamo;
+    @FXML
+    private TextField textCodigoRecurso;
+    @FXML
+    private Button buttonAgregarFoto;
 
     /**
      * Initializes the controller class.
@@ -149,12 +160,27 @@ public class FXMLLibraryBasController implements Initializable {
 
     @FXML
     private void setOnMouseClickedImageViewMinimize(MouseEvent event) {
-        Stage s = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Stage s = (Stage) ((Node) event.getSource()).getScene().getWindow();
         s.setIconified(true);
     }
 
     @FXML
-    private void setOnMouseClickedbuttonAñadirUsuario(MouseEvent event) {
+    private void setOnActionButtonAñadirRecurso(ActionEvent event) {
+        String nombreRecurso = textNombre.getText();
+        int codigoRecurso = Integer.parseInt(textId.getText());
+        String tipo = comboBoxTipo.getValue();
+        listaRecurso.insertarRecurso(listaRecurso, nombreRecurso, codigoRecurso, tipo);
+
+    }
+
+    @FXML
+    private void setOnActionButtonEliminarRecurso(ActionEvent event) {
+        int codigoRecurso = Integer.parseInt(textId.getText());
+        listaRecurso.eliminarRecurso(listaRecurso, codigoRecurso);
+    }
+
+    @FXML
+    private void setOnActionButtonAñadirUsuario(ActionEvent event) {
         String nombreUsuario = textNombreUsuario.getText();
         int codigoUsuario = Integer.parseInt(textIdUsuario.getText());
         String tipo = comboBoxRol.getValue();
@@ -169,29 +195,14 @@ public class FXMLLibraryBasController implements Initializable {
     }
 
     @FXML
-    private void agregarFoto(ActionEvent event) throws FileNotFoundException {
+    private void setOnActionButtonAgregarFoto(ActionEvent event) throws FileNotFoundException {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Archivos JPG", "*.jpg"), new ExtensionFilter("Archivos PNG", "*.png"));
+        fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Archivos"
+                + " JPG", "*.jpg"), new ExtensionFilter("Archivos PNG", "*.png"));
         fileChooser.setTitle("Abrir archivo de foto");
         File archivo = fileChooser.showOpenDialog(null);
 
         Image image = new Image(new FileInputStream(archivo.getPath()));
         imageViewFoto.setImage(image);
     }
-
-    @FXML
-    private void setOnMouseClickedbuttonAñadirRecurso(ActionEvent event) {
-        String nombreRecurso = textNombre.getText();
-        int codigoRecurso = Integer.parseInt(textId.getText());
-        String tipo = comboBoxTipo.getValue();
-        listaRecurso.insertarRecurso(listaRecurso, nombreRecurso, codigoRecurso, tipo);
-
-    }
-
-    @FXML
-    private void setOnMouseClickedbuttonEliminarRecurso(ActionEvent event) {
-        int codigoRecurso = Integer.parseInt(textId.getText());
-        listaRecurso.eliminarRecurso(listaRecurso, codigoRecurso);
-    }
-
 }

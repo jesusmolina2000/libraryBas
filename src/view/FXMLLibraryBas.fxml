@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -21,12 +27,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="513.0" prefWidth="750.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLLibraryBasController">
+<AnchorPane id="AnchorPane" prefHeight="529.0" prefWidth="769.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLLibraryBasController">
     <stylesheets>
         <URL value="@estilo.css" />
     </stylesheets>
    <children>
-      <VBox prefHeight="513.0" prefWidth="208.0" style="-fx-background-color: #009999;">
+      <VBox prefHeight="527.0" prefWidth="208.0" style="-fx-background-color: #009999;">
          <children>
             <Pane prefHeight="140.0" prefWidth="181.0" style="-fx-background-color: #006666;">
                <children>
@@ -49,12 +55,12 @@
             <Button fx:id="buttonMulta" mnemonicParsing="false" onAction="#handleClick" prefHeight="47.0" prefWidth="215.0" text="Multas" />
          </children>
       </VBox>
-      <ImageView fx:id="imageViewClose" fitHeight="16.0" fitWidth="101.0" layoutX="720.0" layoutY="14.0" onMouseClicked="#setOnMouseClickedImageViewClose" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageViewClose" fitHeight="16.0" fitWidth="101.0" layoutX="728.0" layoutY="14.0" onMouseClicked="#setOnMouseClickedImageViewClose" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../multimedia/close.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imageViewMinimize" fitHeight="16.0" fitWidth="101.0" layoutX="689.0" layoutY="14.0" onMouseClicked="#setOnMouseClickedImageViewMinimize" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageViewMinimize" fitHeight="16.0" fitWidth="101.0" layoutX="697.0" layoutY="14.0" onMouseClicked="#setOnMouseClickedImageViewMinimize" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../multimedia/minimize.png" />
          </image>
@@ -93,6 +99,24 @@
                   <Button fx:id="buttonDevolver" mnemonicParsing="false" prefHeight="25.0" prefWidth="186.0" stylesheets="@estilo2.css" text="Devolver articulo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
+            <GridPane fx:id="gridPanePrestamo" layoutX="215.0" style="-fx-background-color: white;">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="buttonRealizarPrestamo" mnemonicParsing="false" prefHeight="25.0" prefWidth="194.0" stylesheets="@estilo2.css" text="Realizar prestamo" GridPane.rowIndex="2" />
+                  <DatePicker fx:id="datePickerFechaPrestamo" promptText="Seleccione fecha" stylesheets="@estilo2.css" GridPane.columnIndex="1" />
+                  <DatePicker fx:id="datePickerFechaLimite" promptText="seleccione fecha" stylesheets="@estilo2.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="textCodigoUsuarioPrestamo" promptText="Ingrese codido de usuario" />
+                  <TextField fx:id="textCodigoRecurso" prefHeight="26.0" prefWidth="190.0" promptText="Ingrese codigo de recurso" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
             <GridPane fx:id="gridPaneUsuario" style="-fx-background-color: white;">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -108,8 +132,8 @@
                   <TextField fx:id="textNombreUsuario" promptText="Ingrese nombre " />
                   <TextField fx:id="textIdUsuario" promptText="Ingrese ID" GridPane.rowIndex="1" />
                   <ComboBox fx:id="comboBoxRol" prefHeight="26.0" prefWidth="267.0" promptText="Seleccione rol" GridPane.rowIndex="2" />
-                  <Button fx:id="buttonAñadirUsuario" mnemonicParsing="false" onMouseClicked="#setOnMouseClickedbuttonAñadirUsuario" prefHeight="25.0" prefWidth="181.0" stylesheets="@estilo2.css" text="Añadir usuario" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Button fx:id="botonAgregarFoto" mnemonicParsing="false" onAction="#agregarFoto" prefHeight="25.0" prefWidth="166.0" stylesheets="@estilo2.css" text="Agregar Foto" GridPane.columnIndex="1" />
+                  <Button fx:id="buttonAñadirUsuario" mnemonicParsing="false" onAction="#setOnActionButtonAñadirUsuario" prefHeight="25.0" prefWidth="181.0" stylesheets="@estilo2.css" text="Añadir usuario" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Button fx:id="buttonAgregarFoto" mnemonicParsing="false" onAction="#setOnActionButtonAgregarFoto" prefHeight="25.0" prefWidth="166.0" stylesheets="@estilo2.css" text="Agregar Foto" GridPane.columnIndex="1" />
                </children>
             </GridPane>
             <GridPane fx:id="gridPaneInventario" layoutX="215.0" layoutY="166.0" prefHeight="338.0" prefWidth="530.0" style="-fx-background-color: white;">
@@ -131,40 +155,22 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.rowIndex="1">
                      <children>
-                        <Button fx:id="buttonInsertarRecurso" mnemonicParsing="false" onAction="#setOnMouseClickedbuttonAñadirRecurso" prefHeight="25.0" prefWidth="246.0" stylesheets="@estilo2.css" text="Insertar recurso" />
-                        <Button fx:id="buttonEliminarRecurso" mnemonicParsing="false" onAction="#setOnMouseClickedbuttonEliminarRecurso" prefHeight="25.0" prefWidth="249.0" stylesheets="@estilo2.css" text="Eliminar recurso" />
+                        <Button fx:id="buttonInsertarRecurso" mnemonicParsing="false" onAction="#setOnActionButtonAñadirRecurso" prefHeight="25.0" prefWidth="246.0" stylesheets="@estilo2.css" text="Insertar recurso" />
+                        <Button fx:id="buttonEliminarRecurso" mnemonicParsing="false" onAction="#setOnActionButtonEliminarRecurso" prefHeight="25.0" prefWidth="249.0" stylesheets="@estilo2.css" text="Eliminar recurso" />
                      </children>
                   </HBox>
                   <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                     <columns>
-                      <TableColumn prefWidth="116.0" text="ID" />
-                      <TableColumn prefWidth="153.0" text="Tipo" />
-                        <TableColumn prefWidth="335.0" text="Column X" />
+                      <TableColumn prefWidth="105.0" text="ID" />
+                      <TableColumn prefWidth="152.0" text="Tipo" />
+                        <TableColumn prefWidth="347.0" text="Nombre recurso" />
                     </columns>
                   </TableView>
                </children>
             </GridPane>
-            <GridPane fx:id="gridPanePrestamo" layoutX="215.0" style="-fx-background-color: white;">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Button fx:id="buttonRealizarPrestamo" mnemonicParsing="false" prefHeight="25.0" prefWidth="194.0" stylesheets="@estilo2.css" text="Realizar prestamo" GridPane.rowIndex="2" />
-                  <DatePicker fx:id="datePickerFechaPrestamo" promptText="Seleccione fecha" stylesheets="@estilo2.css" GridPane.columnIndex="1" />
-                  <DatePicker fx:id="datePickerFechaLimite" promptText="seleccione fecha" stylesheets="@estilo2.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="textCodigoUsuarioPrestamo" promptText="Ingrese codido de usuario" />
-                  <TextField fx:id="textCodigoRecurso" prefHeight="26.0" prefWidth="190.0" promptText="Ingrese codigo de recurso" GridPane.rowIndex="1" />
-               </children>
-            </GridPane>
          </children>
       </StackPane>
-      <Pane fx:id="paneEstado" layoutX="208.0" layoutY="64.0" prefHeight="76.0" prefWidth="542.0" style="-fx-background-color: #009999;">
+      <Pane fx:id="paneEstado" layoutX="208.0" layoutY="64.0" prefHeight="76.0" prefWidth="560.0" style="-fx-background-color: #009999;">
          <children>
             <Label fx:id="labelEstado" layoutX="14.0" layoutY="30.0" text="Inventario" />
          </children>
