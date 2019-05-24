@@ -92,5 +92,4 @@ public class Comunidad implements java.io.Serializable {
         usuario.setNombreUsuario(nombreUsuario);
         usuario.setFoto(foto);
     }
-
 }
