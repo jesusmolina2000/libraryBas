@@ -40,6 +40,7 @@ import lista.ListaRecurso;
 import model.Comunidad;
 import model.Docente;
 import model.Estudiante;
+import model.Recurso;
 import model.Usuario;
 
 /**
@@ -132,6 +133,10 @@ public class FXMLLibraryBasController implements Initializable {
     private TableColumn<?, ?> columnaNombre;
     @FXML
     private Button buttonEliminarUsuario;
+    @FXML
+    private Button buttonBuscarRecurso;
+    @FXML
+    private TableView<Recurso> TablaRecursos;
 
     /**
      * Initializes the controller class.
@@ -218,10 +223,10 @@ public class FXMLLibraryBasController implements Initializable {
         
         if(comunidad.buscarUsuarioId(comunidad, codigoUsuario) == null) {
             comunidad.insertarUsuario(comunidad, nombreUsuario, codigoUsuario, tipo, foto);
-            //JOptionPane.showMessageDialog(null, "!Agregado con exito¡");
+            JOptionPane.showMessageDialog(null, "!Agregado con exito¡");
         } else {
             comunidad.actualizarUsuario(nombreUsuario, codigoUsuario, tipo, foto);
-            //JOptionPane.showMessageDialog(null, "!Actualizado con exito¡");
+            JOptionPane.showMessageDialog(null, "!Actualizado con exito¡");
         }
         
         textNombreUsuario.setText("");
@@ -252,7 +257,6 @@ public class FXMLLibraryBasController implements Initializable {
     
     private void LlenarListaUsuarios() {
         tablaUsuarios.getItems().clear();
-        
         Comunidad apuntador = comunidad;
         while(apuntador.nodo != null) {
             tablaUsuarios.getItems().add(apuntador.nodo);
@@ -265,7 +269,7 @@ public class FXMLLibraryBasController implements Initializable {
         int codigoUsuario = Integer.parseInt(textIdUsuario.getText());
         Usuario usuarioEncontrado = comunidad.buscarUsuarioId(comunidad, codigoUsuario);
         if(usuarioEncontrado == null) {
-            //JOptionPane.showMessageDialog(null, "Usuario no encontrado");
+            JOptionPane.showMessageDialog(null, "Usuario no encontrado");
         } else {
             textNombreUsuario.setText(usuarioEncontrado.getNombreUsuario());
             textIdUsuario.setText("" + usuarioEncontrado.getCodigoUsuario());
@@ -288,5 +292,37 @@ public class FXMLLibraryBasController implements Initializable {
         comunidad = comunidad.eliminarUsuario(comunidad, codigoUsuario);
         LlenarListaUsuarios();
         textIdUsuario.setText("");
+        textNombreUsuario.setText("");
     }
+
+    @FXML
+    private void setOnActionButtonBuscarRecurso(ActionEvent event) {
+       /* int codigoRecurso = Integer.parseInt(textId.getText());
+        Recurso recursoEncontrado = listaRecurso.buscarRecursoId(listaRecurso, codigoRecurso);
+        if(recursoEncontrado == null) {
+            JOptionPane.showMessageDialog(null, "recurso no encontrado");
+        } else {
+            textNombre.setText(recursoEncontrado.getNombreRecurso());
+            textId.setText("" + recursoEncontrado.getCodigoRecurso());
+            imageViewFoto.imageProperty().set(usuarioEncontrado.getFoto());
+            if(usuarioEncontrado instanceof Estudiante) {
+                comboBoxRol.getSelectionModel().select("Estudiante");
+            } else {
+                if(usuarioEncontrado instanceof Docente) {
+                    comboBoxRol.getSelectionModel().select("Docente");
+                } else {
+                    comboBoxRol.getSelectionModel().select("Padre de familia");
+                }
+            }
+        }*/
+    }
+    
+    /*private void LlenarListaRecursos() {
+        TablaRecursos.getItems().clear();
+        ListaRecurso apuntador = listaRecurso;
+        while(apuntador. != null) {
+            tablaUsuarios.getItems().add(apuntador.nodo);
+            apuntador = apuntador.siguiente;
+        }
+    }*/
 }

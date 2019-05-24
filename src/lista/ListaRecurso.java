@@ -12,14 +12,15 @@ import model.Recurso;
  * @author mariomerco
  */
 public class ListaRecurso implements java.io.Serializable {
+
     private Recurso nodo;
     private ListaRecurso siguiente;
-    
+
     public ListaRecurso() {
         nodo = null;
         siguiente = null;
     }
-    
+
     /*public Usuario ultimoUsuario() {
         Usuario apuntador = usuario;
         while (apuntador != null) {
@@ -30,9 +31,8 @@ public class ListaRecurso implements java.io.Serializable {
         }
         return null;
     }*/
-    
     public void insertarRecurso(ListaRecurso apuntador, String nombreRecurso, int codigoRecurso, String tipo) {
-        if(apuntador.nodo == null) {
+        if (apuntador.siguiente == null) {
             Recurso nuevoRecurso = null;
             nodo = nuevoRecurso;
             siguiente = new ListaRecurso();
@@ -40,10 +40,10 @@ public class ListaRecurso implements java.io.Serializable {
             insertarRecurso(apuntador.siguiente, nombreRecurso, codigoRecurso, tipo);
         }
     }
-    
+
     public Recurso buscarRecursoId(ListaRecurso apuntador, int codigoRecurso) {
-        if(apuntador.nodo != null) {
-            if(apuntador.nodo.getCodigoRecurso() == codigoRecurso) {
+        if (apuntador.nodo != null) {
+            if (apuntador.nodo.getCodigoRecurso() == codigoRecurso) {
                 return apuntador.nodo;
             } else {
                 return buscarRecursoId(apuntador.siguiente, codigoRecurso);
@@ -51,30 +51,29 @@ public class ListaRecurso implements java.io.Serializable {
         }
         return null;
     }
-    
-    public void eliminarRecurso(ListaRecurso apuntador, int codigoRecurso){
+
+    public ListaRecurso eliminarRecurso(ListaRecurso apuntador, int codigoRecurso) {
         ListaRecurso temp = apuntador;
         ListaRecurso anterior = null;
-        
-        
-        if(temp != null && temp.nodo.getCodigoRecurso() == codigoRecurso) {
+
+        if (temp != null && temp.nodo.getCodigoRecurso() == codigoRecurso) {
             apuntador = apuntador.siguiente;
-            return;
+            return apuntador;
         }
-        
-        while(temp != null && temp.nodo.getCodigoRecurso() != codigoRecurso) {
+
+        while (temp != null && temp.nodo.getCodigoRecurso() != codigoRecurso) {
             anterior = temp;
             temp = temp.siguiente;
         }
-        
-        
-        if(temp == null) {
-            return;
+
+        if (temp == null) {
+            return apuntador;
         }
-        
+
         anterior.siguiente = temp.siguiente;
+        return apuntador;
     }
-    
+
     public void actualizarRecurso(String nombreRecurso, int codigoRecurso, String tipo) {
         Recurso recurso = buscarRecursoId(this, codigoRecurso);
         recurso.setNombreRecurso(nombreRecurso);
