@@ -137,6 +137,12 @@ public class FXMLLibraryBasController implements Initializable {
     private Button buttonBuscarRecurso;
     @FXML
     private TableView<Recurso> TablaRecursos;
+    @FXML
+    private TableColumn<?, ?> columnaIdRecurso;
+    @FXML
+    private TableColumn<?, ?> columnaTipoRecurso;
+    @FXML
+    private TableColumn<?, ?> columnaNombreRecurso;
 
     /**
      * Initializes the controller class.
@@ -158,6 +164,10 @@ public class FXMLLibraryBasController implements Initializable {
     private void InicializarColumnas() {
         columnaNombre.setCellValueFactory(new PropertyValueFactory<>("nombreUsuario"));
         columnaId.setCellValueFactory(new PropertyValueFactory<>("codigoUsuario"));
+        
+        columnaIdRecurso.setCellValueFactory(new PropertyValueFactory<>("codigoRecurso"));
+        columnaNombreRecurso.setCellValueFactory(new PropertyValueFactory<>("nombreRecurso"));
+        columnaTipoRecurso.setCellValueFactory(new PropertyValueFactory<>("tipo"));
     }
 
     @FXML
@@ -201,13 +211,15 @@ public class FXMLLibraryBasController implements Initializable {
         textNombre.setText("");
         textId.setText("");
         comboBoxTipo.getSelectionModel().select(0);
+        LlenarListaRecursos();
 
     }
 
     @FXML
     private void setOnActionButtonEliminarRecurso(ActionEvent event) {
         int codigoRecurso = Integer.parseInt(textId.getText());
-        listaRecurso.eliminarRecurso(listaRecurso, codigoRecurso);
+        listaRecurso = listaRecurso.eliminarRecurso(listaRecurso, codigoRecurso);
+        LlenarListaRecursos();
         //JOptionPane.showMessageDialog(null,"El recurso se elimino exitosamente");
         textNombre.setText("");
         textId.setText("");
@@ -223,10 +235,10 @@ public class FXMLLibraryBasController implements Initializable {
         
         if(comunidad.buscarUsuarioId(comunidad, codigoUsuario) == null) {
             comunidad.insertarUsuario(comunidad, nombreUsuario, codigoUsuario, tipo, foto);
-            JOptionPane.showMessageDialog(null, "!Agregado con exito¡");
+            //JOptionPane.showMessageDialog(null, "!Agregado con exito¡");
         } else {
             comunidad.actualizarUsuario(nombreUsuario, codigoUsuario, tipo, foto);
-            JOptionPane.showMessageDialog(null, "!Actualizado con exito¡");
+            //JOptionPane.showMessageDialog(null, "!Actualizado con exito¡");
         }
         
         textNombreUsuario.setText("");
@@ -269,7 +281,7 @@ public class FXMLLibraryBasController implements Initializable {
         int codigoUsuario = Integer.parseInt(textIdUsuario.getText());
         Usuario usuarioEncontrado = comunidad.buscarUsuarioId(comunidad, codigoUsuario);
         if(usuarioEncontrado == null) {
-            JOptionPane.showMessageDialog(null, "Usuario no encontrado");
+            //JOptionPane.showMessageDialog(null, "Usuario no encontrado");
         } else {
             textNombreUsuario.setText(usuarioEncontrado.getNombreUsuario());
             textIdUsuario.setText("" + usuarioEncontrado.getCodigoUsuario());
@@ -297,32 +309,23 @@ public class FXMLLibraryBasController implements Initializable {
 
     @FXML
     private void setOnActionButtonBuscarRecurso(ActionEvent event) {
-       /* int codigoRecurso = Integer.parseInt(textId.getText());
+       int codigoRecurso = Integer.parseInt(textId.getText());
         Recurso recursoEncontrado = listaRecurso.buscarRecursoId(listaRecurso, codigoRecurso);
         if(recursoEncontrado == null) {
-            JOptionPane.showMessageDialog(null, "recurso no encontrado");
+            //JOptionPane.showMessageDialog(null, "recurso no encontrado");
         } else {
             textNombre.setText(recursoEncontrado.getNombreRecurso());
             textId.setText("" + recursoEncontrado.getCodigoRecurso());
-            imageViewFoto.imageProperty().set(usuarioEncontrado.getFoto());
-            if(usuarioEncontrado instanceof Estudiante) {
-                comboBoxRol.getSelectionModel().select("Estudiante");
-            } else {
-                if(usuarioEncontrado instanceof Docente) {
-                    comboBoxRol.getSelectionModel().select("Docente");
-                } else {
-                    comboBoxRol.getSelectionModel().select("Padre de familia");
-                }
-            }
-        }*/
+            comboBoxTipo.getSelectionModel().select(recursoEncontrado.getTipo());       
+        }
     }
     
-    /*private void LlenarListaRecursos() {
+    private void LlenarListaRecursos() {
         TablaRecursos.getItems().clear();
         ListaRecurso apuntador = listaRecurso;
-        while(apuntador. != null) {
-            tablaUsuarios.getItems().add(apuntador.nodo);
+        while(apuntador.nodo != null) {
+            TablaRecursos.getItems().add(apuntador.nodo);
             apuntador = apuntador.siguiente;
         }
-    }*/
+    }
 }

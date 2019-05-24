@@ -21,7 +21,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="529.0" prefWidth="769.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLLibraryBasController">
+<AnchorPane id="AnchorPane" prefHeight="529.0" prefWidth="769.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLLibraryBasController">
     <stylesheets>
         <URL value="@estilo.css" />
     </stylesheets>
@@ -166,9 +166,9 @@
                   </HBox>
                   <TableView fx:id="TablaRecursos" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                     <columns>
-                      <TableColumn prefWidth="105.0" text="ID" />
-                      <TableColumn prefWidth="152.0" text="Tipo" />
-                        <TableColumn prefWidth="347.0" text="Nombre recurso" />
+                      <TableColumn fx:id="columnaIdRecurso" prefWidth="105.0" text="ID" />
+                      <TableColumn fx:id="columnaTipoRecurso" prefWidth="152.0" text="Tipo" />
+                        <TableColumn fx:id="columnaNombreRecurso" prefWidth="347.0" text="Nombre recurso" />
                     </columns>
                   </TableView>
                </children>

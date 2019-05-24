@@ -13,8 +13,8 @@ import model.Recurso;
  */
 public class ListaRecurso implements java.io.Serializable {
 
-    private Recurso nodo;
-    private ListaRecurso siguiente;
+    public Recurso nodo;
+    public ListaRecurso siguiente;
 
     public ListaRecurso() {
         nodo = null;
@@ -33,9 +33,9 @@ public class ListaRecurso implements java.io.Serializable {
     }*/
     public void insertarRecurso(ListaRecurso apuntador, String nombreRecurso, int codigoRecurso, String tipo) {
         if (apuntador.siguiente == null) {
-            Recurso nuevoRecurso = null;
-            nodo = nuevoRecurso;
-            siguiente = new ListaRecurso();
+            Recurso nuevoRecurso = new Recurso(nombreRecurso, codigoRecurso, tipo);
+            apuntador.nodo = nuevoRecurso;
+            apuntador.siguiente = new ListaRecurso();
         } else {
             insertarRecurso(apuntador.siguiente, nombreRecurso, codigoRecurso, tipo);
         }

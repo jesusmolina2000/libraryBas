@@ -93,38 +93,6 @@
                   <Button fx:id="buttonDevolver" mnemonicParsing="false" prefHeight="25.0" prefWidth="186.0" stylesheets="@estilo2.css" text="Devolver articulo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
-            <GridPane fx:id="gridPaneInventario" layoutX="215.0" layoutY="166.0" prefHeight="338.0" prefWidth="530.0" style="-fx-background-color: white;">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints maxHeight="191.0" minHeight="0.0" prefHeight="37.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="240.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="299.0" minHeight="10.0" prefHeight="283.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
-                     <children>
-                        <TextField fx:id="textId" prefHeight="26.0" prefWidth="141.0" promptText="Ingrese ID" />
-                        <TextField fx:id="textNombre" prefHeight="26.0" prefWidth="197.0" promptText="Ingrese nombre" />
-                        <ComboBox fx:id="comboBoxTipo" prefHeight="26.0" prefWidth="178.0" promptText="Seleccione tipo " />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.rowIndex="1">
-                     <children>
-                        <Button fx:id="buttonInsertarRecurso" mnemonicParsing="false" onAction="#setOnActionButtonAñadirRecurso" prefHeight="25.0" prefWidth="246.0" stylesheets="@estilo2.css" text="Insertar recurso" />
-                        <Button fx:id="buttonEliminarRecurso" mnemonicParsing="false" onAction="#setOnActionButtonEliminarRecurso" prefHeight="25.0" prefWidth="249.0" stylesheets="@estilo2.css" text="Eliminar recurso" />
-                     </children>
-                  </HBox>
-                  <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
-                    <columns>
-                      <TableColumn prefWidth="105.0" text="ID" />
-                      <TableColumn prefWidth="152.0" text="Tipo" />
-                        <TableColumn prefWidth="347.0" text="Nombre recurso" />
-                    </columns>
-                  </TableView>
-               </children>
-            </GridPane>
             <GridPane fx:id="gridPanePrestamo" layoutX="215.0" style="-fx-background-color: white;">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -160,7 +128,7 @@
                   <TextField fx:id="textNombreUsuario" promptText="Ingrese nombre " GridPane.rowIndex="1" />
                   <TextField fx:id="textIdUsuario" promptText="Ingrese ID" />
                   <ComboBox fx:id="comboBoxRol" prefHeight="26.0" prefWidth="267.0" promptText="Seleccione rol" GridPane.rowIndex="2" />
-                  <Button fx:id="buttonAñadirUsuario" mnemonicParsing="false" onAction="#setOnActionButtonAñadirUsuario" prefHeight="25.0" prefWidth="181.0" stylesheets="@estilo2.css" text="Añadir usuario" GridPane.rowIndex="3" />
+                  <Button fx:id="buttonAñadirUsuario" mnemonicParsing="false" onAction="#setOnActionButtonAñadirUsuario" prefHeight="25.0" prefWidth="181.0" stylesheets="@estilo2.css" text="Añadir/Actualizar" GridPane.rowIndex="3" />
                   <Button fx:id="buttonAgregarFoto" alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#setOnActionButtonAgregarFoto" prefHeight="25.0" prefWidth="166.0" stylesheets="@estilo2.css" text="Agregar Foto" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TableView fx:id="tablaUsuarios" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowSpan="3">
                     <columns>
@@ -169,7 +137,40 @@
                     </columns>
                   </TableView>
                   <Button fx:id="botonBuscarPorId" alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#setOnActionButtonBuscarPorId" prefHeight="25.0" prefWidth="166.0" stylesheets="@estilo2.css" text="Buscar" GridPane.columnIndex="1" />
-                  <Button fx:id="buttonEliminarUsuario" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="148.0" layoutY="251.0" mnemonicParsing="false" onAction="#setOnActionButtonEliminarUsuario" prefHeight="25.0" prefWidth="166.0" stylesheets="@estilo2.css" text="Eliminar Usuario" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Button fx:id="buttonEliminarUsuario" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="148.0" layoutY="251.0" mnemonicParsing="false" onAction="#setOnActionButtonEliminarUsuario" prefHeight="25.0" prefWidth="166.0" stylesheets="@estilo2.css" text="Eliminar" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+               </children>
+            </GridPane>
+            <GridPane fx:id="gridPaneInventario" layoutX="215.0" layoutY="166.0" prefHeight="338.0" prefWidth="530.0" style="-fx-background-color: white;">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="191.0" minHeight="0.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="240.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="299.0" minHeight="10.0" prefHeight="283.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <TextField fx:id="textId" prefHeight="26.0" prefWidth="141.0" promptText="Ingrese ID" />
+                        <TextField fx:id="textNombre" prefHeight="26.0" prefWidth="197.0" promptText="Ingrese nombre" />
+                        <ComboBox fx:id="comboBoxTipo" prefHeight="26.0" prefWidth="178.0" promptText="Seleccione tipo " />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.rowIndex="1">
+                     <children>
+                        <Button fx:id="buttonInsertarRecurso" mnemonicParsing="false" onAction="#setOnActionButtonAñadirRecurso" prefHeight="25.0" prefWidth="162.0" stylesheets="@estilo2.css" text="Insertar/actualizar recurso" />
+                        <Button fx:id="buttonBuscarRecurso" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#setOnActionButtonBuscarRecurso" prefHeight="25.0" prefWidth="162.0" stylesheets="@estilo2.css" text="Buscar recurso" />
+                        <Button fx:id="buttonEliminarRecurso" mnemonicParsing="false" onAction="#setOnActionButtonEliminarRecurso" prefHeight="25.0" prefWidth="164.0" stylesheets="@estilo2.css" text="Eliminar recurso" />
+                     </children>
+                  </HBox>
+                  <TableView fx:id="TablaRecursos" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+                    <columns>
+                      <TableColumn fx:id="columnaIdRecurso" prefWidth="105.0" text="ID" />
+                      <TableColumn fx:id="columnaTipoRecurso" prefWidth="152.0" text="Tipo" />
+                        <TableColumn fx:id="columnaNombreRecurso" prefWidth="347.0" text="Nombre recurso" />
+                    </columns>
+                  </TableView>
                </children>
             </GridPane>
          </children>
