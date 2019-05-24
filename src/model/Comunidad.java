@@ -15,8 +15,8 @@ import model.Usuario;
  */
 public class Comunidad implements java.io.Serializable {
 
-    private Usuario nodo;
-    private Comunidad siguiente;
+    public Usuario nodo;
+    public Comunidad siguiente;
 
     public Comunidad() {
         nodo = null;
@@ -34,7 +34,7 @@ public class Comunidad implements java.io.Serializable {
         return null;
     }*/
     public void insertarUsuario(Comunidad apuntador, String nombreUsuario, int codigoUsuario, String tipoUsuario, Image foto) {
-        if (apuntador.nodo == null) {
+        if (apuntador.siguiente == null) {
             Usuario nuevoUsuario = null;
             switch (tipoUsuario) {
                 case "Estudiante":
@@ -47,8 +47,8 @@ public class Comunidad implements java.io.Serializable {
                     nuevoUsuario = new PadreDefamilia(nombreUsuario, codigoUsuario, foto);
                     break;
             }
-            nodo = nuevoUsuario;
-            siguiente = new Comunidad();
+            apuntador.nodo = nuevoUsuario;
+            apuntador.siguiente = new Comunidad();
         } else {
             insertarUsuario(apuntador.siguiente, nombreUsuario, codigoUsuario, tipoUsuario, foto);
         }

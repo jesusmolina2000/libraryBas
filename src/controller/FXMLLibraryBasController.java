@@ -20,7 +20,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -35,6 +38,7 @@ import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import lista.ListaRecurso;
 import model.Comunidad;
+import model.Usuario;
 
 /**
  * FXML Controller class
@@ -116,6 +120,14 @@ public class FXMLLibraryBasController implements Initializable {
     private TextField textCodigoRecurso;
     @FXML
     private Button buttonAgregarFoto;
+    @FXML
+    private TableView<Usuario> tablaUsuarios;
+    @FXML
+    private Button botonBuscarPorId;
+    @FXML
+    private TableColumn<?, ?> columnaId;
+    @FXML
+    private TableColumn<?, ?> columnaNombre;
 
     /**
      * Initializes the controller class.
@@ -131,6 +143,12 @@ public class FXMLLibraryBasController implements Initializable {
                 "Padre de familia");
         comunidad = new Comunidad();
         listaRecurso = new ListaRecurso();
+        InicializarColumnas();
+    }
+    
+    private void InicializarColumnas() {
+        columnaNombre.setCellValueFactory(new PropertyValueFactory<>("nombreUsuario"));
+        columnaId.setCellValueFactory(new PropertyValueFactory<>("codigoUsuario"));
     }
 
     @FXML
@@ -170,7 +188,7 @@ public class FXMLLibraryBasController implements Initializable {
         int codigoRecurso = Integer.parseInt(textId.getText());
         String tipo = comboBoxTipo.getValue();
         listaRecurso.insertarRecurso(listaRecurso, nombreRecurso, codigoRecurso, tipo);
-        JOptionPane.showMessageDialog(null,"El recurso se añadio exitosamente");
+        //JOptionPane.showMessageDialog(null,"El recurso se añadio exitosamente");
         textNombre.setText("");
         textId.setText("");
         comboBoxTipo.getSelectionModel().select(0);
@@ -181,7 +199,7 @@ public class FXMLLibraryBasController implements Initializable {
     private void setOnActionButtonEliminarRecurso(ActionEvent event) {
         int codigoRecurso = Integer.parseInt(textId.getText());
         listaRecurso.eliminarRecurso(listaRecurso, codigoRecurso);
-        JOptionPane.showMessageDialog(null,"El recurso se elimino exitosamente");
+        //JOptionPane.showMessageDialog(null,"El recurso se elimino exitosamente");
         textNombre.setText("");
         textId.setText("");
         comboBoxTipo.getSelectionModel().select(0);
@@ -194,18 +212,21 @@ public class FXMLLibraryBasController implements Initializable {
         String tipo = comboBoxRol.getValue();
         Image foto = imageViewFoto.getImage();
         comunidad.insertarUsuario(comunidad, nombreUsuario, codigoUsuario, tipo, foto);
-        JOptionPane.showMessageDialog(null, "!Agregado con exito¡");
+        //JOptionPane.showMessageDialog(null, "!Agregado con exito¡");
         textNombreUsuario.setText("");
         textIdUsuario.setText("");
         imageViewFoto.imageProperty().set(null);
         comboBoxRol.getSelectionModel().select(0);
+        LlenarListaUsuarios();
     }
 
     @FXML
     private void setOnActionButtonAgregarFoto(ActionEvent event) throws FileNotFoundException {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Archivos"
-                + " JPG", "*.jpg"), new ExtensionFilter("Archivos PNG", "*.png"));
+        fileChooser.getExtensionFilters().addAll(
+                new ExtensionFilter("Archivos PNG", "*.png"),
+                new ExtensionFilter("Archivos JPG", "*.jpg")
+        );
         fileChooser.setTitle("Abrir archivo de foto");
         File archivo = fileChooser.showOpenDialog(null);
         Image image = new Image(new FileInputStream(archivo.getPath()));
@@ -215,6 +236,16 @@ public class FXMLLibraryBasController implements Initializable {
     @FXML
     private void setOnActionButtonRealizarPrestamo(ActionEvent event) {
         
+    }
+    
+    private void LlenarListaUsuarios() {
+        tablaUsuarios.getItems().clear();
+        
+        Comunidad apuntador = comunidad;
+        while(apuntador.nodo != null) {
+            tablaUsuarios.getItems().add(apuntador.nodo);
+            apuntador = apuntador.siguiente;
+        }
     }
     
     
