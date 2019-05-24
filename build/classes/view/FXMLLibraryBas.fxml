@@ -168,7 +168,8 @@
                       <TableColumn fx:id="columnaNombre" prefWidth="75.0" text="Nombre" />
                     </columns>
                   </TableView>
-                  <Button fx:id="botonBuscarPorId" alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#setOnActionButtonAgregarFoto" prefHeight="25.0" prefWidth="166.0" stylesheets="@estilo2.css" text="Buscar" GridPane.columnIndex="1" />
+                  <Button fx:id="botonBuscarPorId" alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#setOnActionButtonBuscarPorId" prefHeight="25.0" prefWidth="166.0" stylesheets="@estilo2.css" text="Buscar" GridPane.columnIndex="1" />
+                  <Button fx:id="buttonEliminarUsuario" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="148.0" layoutY="251.0" mnemonicParsing="false" onAction="#setOnActionButtonEliminarUsuario" prefHeight="25.0" prefWidth="166.0" stylesheets="@estilo2.css" text="Eliminar Usuario" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>
          </children>

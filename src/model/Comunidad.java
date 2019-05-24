@@ -65,13 +65,13 @@ public class Comunidad implements java.io.Serializable {
         return null;
     }
 
-    public void eliminarUsuario(Comunidad apuntador, int codigoUsuario) {
+    public Comunidad eliminarUsuario(Comunidad apuntador, int codigoUsuario) {
         Comunidad temp = apuntador;
         Comunidad anterior = null;
 
         if (temp != null && temp.nodo.getCodigoUsuario() == codigoUsuario) {
             apuntador = apuntador.siguiente;
-            return;
+            return apuntador;
         }
 
         while (temp != null && temp.nodo.getCodigoUsuario() != codigoUsuario) {
@@ -80,10 +80,11 @@ public class Comunidad implements java.io.Serializable {
         }
 
         if (temp == null) {
-            return;
+            return apuntador;
         }
 
         anterior.siguiente = temp.siguiente;
+        return apuntador;
     }
 
     public void actualizarUsuario(String nombreUsuario, int codigoUsuario, String tipoUsuario, Image foto) {

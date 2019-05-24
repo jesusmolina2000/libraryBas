@@ -38,6 +38,8 @@ import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import lista.ListaRecurso;
 import model.Comunidad;
+import model.Docente;
+import model.Estudiante;
 import model.Usuario;
 
 /**
@@ -128,6 +130,8 @@ public class FXMLLibraryBasController implements Initializable {
     private TableColumn<?, ?> columnaId;
     @FXML
     private TableColumn<?, ?> columnaNombre;
+    @FXML
+    private Button buttonEliminarUsuario;
 
     /**
      * Initializes the controller class.
@@ -211,12 +215,20 @@ public class FXMLLibraryBasController implements Initializable {
         int codigoUsuario = Integer.parseInt(textIdUsuario.getText());
         String tipo = comboBoxRol.getValue();
         Image foto = imageViewFoto.getImage();
-        comunidad.insertarUsuario(comunidad, nombreUsuario, codigoUsuario, tipo, foto);
-        //JOptionPane.showMessageDialog(null, "!Agregado con exito¡");
+        
+        if(comunidad.buscarUsuarioId(comunidad, codigoUsuario) == null) {
+            comunidad.insertarUsuario(comunidad, nombreUsuario, codigoUsuario, tipo, foto);
+            //JOptionPane.showMessageDialog(null, "!Agregado con exito¡");
+        } else {
+            comunidad.actualizarUsuario(nombreUsuario, codigoUsuario, tipo, foto);
+            //JOptionPane.showMessageDialog(null, "!Actualizado con exito¡");
+        }
+        
         textNombreUsuario.setText("");
         textIdUsuario.setText("");
         imageViewFoto.imageProperty().set(null);
         comboBoxRol.getSelectionModel().select(0);
+        
         LlenarListaUsuarios();
     }
 
@@ -247,7 +259,34 @@ public class FXMLLibraryBasController implements Initializable {
             apuntador = apuntador.siguiente;
         }
     }
-    
-    
-    
+
+    @FXML
+    private void setOnActionButtonBuscarPorId(ActionEvent event) {
+        int codigoUsuario = Integer.parseInt(textIdUsuario.getText());
+        Usuario usuarioEncontrado = comunidad.buscarUsuarioId(comunidad, codigoUsuario);
+        if(usuarioEncontrado == null) {
+            //JOptionPane.showMessageDialog(null, "Usuario no encontrado");
+        } else {
+            textNombreUsuario.setText(usuarioEncontrado.getNombreUsuario());
+            textIdUsuario.setText("" + usuarioEncontrado.getCodigoUsuario());
+            imageViewFoto.imageProperty().set(usuarioEncontrado.getFoto());
+            if(usuarioEncontrado instanceof Estudiante) {
+                comboBoxRol.getSelectionModel().select("Estudiante");
+            } else {
+                if(usuarioEncontrado instanceof Docente) {
+                    comboBoxRol.getSelectionModel().select("Docente");
+                } else {
+                    comboBoxRol.getSelectionModel().select("Padre de familia");
+                }
+            }
+        }
+    }
+
+    @FXML
+    private void setOnActionButtonEliminarUsuario(ActionEvent event) {
+        int codigoUsuario = Integer.parseInt(textIdUsuario.getText());
+        comunidad = comunidad.eliminarUsuario(comunidad, codigoUsuario);
+        LlenarListaUsuarios();
+        textIdUsuario.setText("");
+    }
 }
