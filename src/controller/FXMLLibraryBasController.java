@@ -10,7 +10,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -40,6 +42,7 @@ import lista.ListaRecurso;
 import model.Comunidad;
 import model.Docente;
 import model.Estudiante;
+import model.Inventario;
 import model.Recurso;
 import model.Usuario;
 
@@ -50,7 +53,7 @@ import model.Usuario;
  */
 public class FXMLLibraryBasController implements Initializable {
 
-    private ListaRecurso listaRecurso;
+    private Inventario inventario;
     private Comunidad comunidad;
 
     @FXML
@@ -120,8 +123,6 @@ public class FXMLLibraryBasController implements Initializable {
     @FXML
     private TextField textCodigoUsuarioPrestamo;
     @FXML
-    private TextField textCodigoRecurso;
-    @FXML
     private Button buttonAgregarFoto;
     @FXML
     private TableView<Usuario> tablaUsuarios;
@@ -143,6 +144,22 @@ public class FXMLLibraryBasController implements Initializable {
     private TableColumn<?, ?> columnaTipoRecurso;
     @FXML
     private TableColumn<?, ?> columnaNombreRecurso;
+    @FXML
+    private TableView<?> tablaPrestamos;
+    @FXML
+    private TableColumn<?, ?> columnaPrestamoUsuario;
+    @FXML
+    private TableColumn<?, ?> columnaPrestamoRecurso;
+    @FXML
+    private TableColumn<?, ?> columnaPrestamoFechaPrestamo;
+    @FXML
+    private TableColumn<?, ?> columnaPrestamoFechaLimite;
+    @FXML
+    private TableColumn<?, ?> columnaPrestamoMultado;
+    @FXML
+    private Button buttonRealizarBuscarPrestamos;
+    @FXML
+    private ComboBox comboBoxCodigoRecursoPrestamo;
 
     /**
      * Initializes the controller class.
@@ -157,7 +174,7 @@ public class FXMLLibraryBasController implements Initializable {
         comboBoxRol.getItems().addAll("Seleccione rol", "Estudiante", "Docente",
                 "Padre de familia");
         comunidad = new Comunidad();
-        listaRecurso = new ListaRecurso();
+        inventario.listaRecurso = new ListaRecurso();
         InicializarColumnas();
     }
     
@@ -206,7 +223,7 @@ public class FXMLLibraryBasController implements Initializable {
         String nombreRecurso = textNombre.getText();
         int codigoRecurso = Integer.parseInt(textId.getText());
         String tipo = comboBoxTipo.getValue();
-        listaRecurso.insertarRecurso(listaRecurso, nombreRecurso, codigoRecurso, tipo);
+        inventario.listaRecurso.insertarRecurso(inventario.listaRecurso, nombreRecurso, codigoRecurso, tipo);
         //JOptionPane.showMessageDialog(null,"El recurso se añadio exitosamente");
         textNombre.setText("");
         textId.setText("");
@@ -218,7 +235,7 @@ public class FXMLLibraryBasController implements Initializable {
     @FXML
     private void setOnActionButtonEliminarRecurso(ActionEvent event) {
         int codigoRecurso = Integer.parseInt(textId.getText());
-        listaRecurso = listaRecurso.eliminarRecurso(listaRecurso, codigoRecurso);
+        inventario.listaRecurso = inventario.listaRecurso.eliminarRecurso(inventario.listaRecurso, codigoRecurso);
         LlenarListaRecursos();
         //JOptionPane.showMessageDialog(null,"El recurso se elimino exitosamente");
         textNombre.setText("");
@@ -247,6 +264,7 @@ public class FXMLLibraryBasController implements Initializable {
         comboBoxRol.getSelectionModel().select(0);
         
         LlenarListaUsuarios();
+        
     }
 
     @FXML
@@ -264,6 +282,21 @@ public class FXMLLibraryBasController implements Initializable {
 
     @FXML
     private void setOnActionButtonRealizarPrestamo(ActionEvent event) {
+        int codigoRecurso = Integer.parseInt(comboBoxCodigoRecursoPrestamo.getSelectionModel().getSelectedItem().toString());
+        Recurso recurso = inventario.listaRecurso.buscarRecursoId(inventario.listaRecurso, codigoRecurso);
+        if(recurso.getPrestado()) {
+            //JOptionPane.showMessageDialog(null, "El recurso solicitado está prestado");
+            return;
+        }
+        
+        int codigoUsuario = Integer.parseInt(textCodigoUsuarioPrestamo.getText());
+        Usuario usuario = comunidad.buscarUsuarioId(comunidad, codigoUsuario);
+        
+        Date fechaPrestamo = new Date(datePickerFechaPrestamo.getValue().toEpochDay());
+        Date fechaLimite = new Date(datePickerFechaLimite.getValue().toEpochDay());
+        
+        inventario.listaPrestamo.insertarPrestamo(inventario.listaPrestamo, recurso, usuario, fechaPrestamo, fechaLimite);
+        //JOptionPane.showMessageDialog(null, "El prestamo ha sido registrado con exito");
         
     }
     
@@ -310,7 +343,7 @@ public class FXMLLibraryBasController implements Initializable {
     @FXML
     private void setOnActionButtonBuscarRecurso(ActionEvent event) {
        int codigoRecurso = Integer.parseInt(textId.getText());
-        Recurso recursoEncontrado = listaRecurso.buscarRecursoId(listaRecurso, codigoRecurso);
+        Recurso recursoEncontrado = inventario.listaRecurso.buscarRecursoId(inventario.listaRecurso, codigoRecurso);
         if(recursoEncontrado == null) {
             //JOptionPane.showMessageDialog(null, "recurso no encontrado");
         } else {
@@ -322,10 +355,16 @@ public class FXMLLibraryBasController implements Initializable {
     
     private void LlenarListaRecursos() {
         TablaRecursos.getItems().clear();
-        ListaRecurso apuntador = listaRecurso;
+        comboBoxCodigoRecursoPrestamo.getItems().clear();
+        ListaRecurso apuntador = inventario.listaRecurso;
         while(apuntador.nodo != null) {
             TablaRecursos.getItems().add(apuntador.nodo);
+            comboBoxCodigoRecursoPrestamo.getItems().add(apuntador.nodo.codigoRecurso().get());
             apuntador = apuntador.siguiente;
         }
+    }
+
+    @FXML
+    private void setOnActionButtonBuscarPrestamos(ActionEvent event) {
     }
 }

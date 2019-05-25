@@ -19,11 +19,13 @@ public class Recurso implements java.io.Serializable {
     private final StringProperty nombreRecurso = new SimpleStringProperty();
     private final IntegerProperty codigoRecurso = new SimpleIntegerProperty();
     private final StringProperty tipo = new SimpleStringProperty();
+    private boolean prestado;
 
     public Recurso(String nombreRecurso, int codigoRecurso, String tipo) {
         setCodigoRecurso(codigoRecurso);
         setTipo(tipo);
         setNombreRecurso(nombreRecurso);
+        prestado = false;
     }
 
     public String getTipo() {
@@ -60,6 +62,18 @@ public class Recurso implements java.io.Serializable {
 
     public StringProperty nombreRecursoProperty() {
         return nombreRecurso;
+    }
+    
+    public void Prestar() {
+        prestado = true;
+    }
+    
+    public void Devolver() {
+        prestado = false;
+    }
+    
+    public boolean getPrestado() {
+        return prestado;
     }
 
 }

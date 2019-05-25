@@ -5,7 +5,10 @@
  */
 package lista;
 
+import java.util.Date;
 import model.Prestamo;
+import model.Usuario;
+import model.Recurso;
 
 /**
  *
@@ -20,13 +23,13 @@ public class ListaPrestamo implements java.io.Serializable {
         siguiente = null;
     }
     
-    public void insertarPrestamo(ListaPrestamo apuntador, String nombreProducto, int codigoProducto, String tipo) {
+    public void insertarPrestamo(ListaPrestamo apuntador, Recurso Recurso, Usuario usuario, Date fechaPrestamo, Date fechaLimite) {
         if(apuntador.nodo == null) {
-            Prestamo nuevoPrestamo = null;
+            Prestamo nuevoPrestamo = new Prestamo(Recurso, usuario, fechaPrestamo, fechaLimite);
             nodo = nuevoPrestamo;
             siguiente = new ListaPrestamo();
         } else {
-            insertarPrestamo(apuntador.siguiente, nombreProducto, codigoProducto, tipo);
+            insertarPrestamo(apuntador.siguiente, Recurso, usuario, fechaPrestamo, fechaLimite);
         }
         
         
