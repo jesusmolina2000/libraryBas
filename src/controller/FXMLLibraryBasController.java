@@ -223,16 +223,19 @@ public class FXMLLibraryBasController implements Initializable {
         String nombreRecurso = textNombre.getText();
         int codigoRecurso = Integer.parseInt(textId.getText());
         String tipo = comboBoxTipo.getValue();
-        if(inventario.listaRecurso.buscarRecursoId(inventario.listaRecurso, codigoRecurso)!=null){
-            inventario.listaRecurso.actualizarRecurso(nombreRecurso, codigoRecurso, tipo);
-        }
-        else{
+        
+        if(inventario.listaRecurso.buscarRecursoId(inventario.listaRecurso, codigoRecurso)==null) {
             inventario.listaRecurso.insertarRecurso(inventario.listaRecurso, nombreRecurso, codigoRecurso, tipo);
+            //JOptionPane.showMessageDialog(null, "!Agregado con exito¡");
+        } else {
+            inventario.listaRecurso.actualizarRecurso(nombreRecurso, codigoRecurso, tipo);
+            //JOptionPane.showMessageDialog(null, "!Actualizado con exito¡");
         }
-        //JOptionPane.showMessageDialog(null,"El recurso se añadio exitosamente");
+        
         textNombre.setText("");
         textId.setText("");
         comboBoxTipo.getSelectionModel().select(0);
+        
         LlenarListaRecursos();
 
     }
