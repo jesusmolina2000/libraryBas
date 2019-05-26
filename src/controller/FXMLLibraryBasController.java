@@ -223,7 +223,12 @@ public class FXMLLibraryBasController implements Initializable {
         String nombreRecurso = textNombre.getText();
         int codigoRecurso = Integer.parseInt(textId.getText());
         String tipo = comboBoxTipo.getValue();
-        inventario.listaRecurso.insertarRecurso(inventario.listaRecurso, nombreRecurso, codigoRecurso, tipo);
+        if(inventario.listaRecurso.buscarRecursoId(inventario.listaRecurso, codigoRecurso)!=null){
+            inventario.listaRecurso.actualizarRecurso(nombreRecurso, codigoRecurso, tipo);
+        }
+        else{
+            inventario.listaRecurso.insertarRecurso(inventario.listaRecurso, nombreRecurso, codigoRecurso, tipo);
+        }
         //JOptionPane.showMessageDialog(null,"El recurso se añadio exitosamente");
         textNombre.setText("");
         textId.setText("");
@@ -284,10 +289,10 @@ public class FXMLLibraryBasController implements Initializable {
     private void setOnActionButtonRealizarPrestamo(ActionEvent event) {
         int codigoRecurso = Integer.parseInt(comboBoxCodigoRecursoPrestamo.getSelectionModel().getSelectedItem().toString());
         Recurso recurso = inventario.listaRecurso.buscarRecursoId(inventario.listaRecurso, codigoRecurso);
-        if(recurso.getPrestado()) {
+        /*if(recurso.getPrestado()) {
             //JOptionPane.showMessageDialog(null, "El recurso solicitado está prestado");
             return;
-        }
+        }*/
         
         int codigoUsuario = Integer.parseInt(textCodigoUsuarioPrestamo.getText());
         Usuario usuario = comunidad.buscarUsuarioId(comunidad, codigoUsuario);
@@ -295,7 +300,7 @@ public class FXMLLibraryBasController implements Initializable {
         Date fechaPrestamo = new Date(datePickerFechaPrestamo.getValue().toEpochDay());
         Date fechaLimite = new Date(datePickerFechaLimite.getValue().toEpochDay());
         
-        inventario.listaPrestamo.insertarPrestamo(inventario.listaPrestamo, recurso, usuario, fechaPrestamo, fechaLimite);
+        //inventario.listaPrestamo.insertarPrestamo(inventario.listaPrestamo, recurso, usuario, fechaPrestamo, fechaLimite);
         //JOptionPane.showMessageDialog(null, "El prestamo ha sido registrado con exito");
         
     }
