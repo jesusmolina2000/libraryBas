@@ -15,8 +15,8 @@ import model.Recurso;
  * @author jesus
  */
 public class ListaPrestamo implements java.io.Serializable {
-    private Prestamo nodo;
-    private ListaPrestamo siguiente;
+    public Prestamo nodo;
+    public ListaPrestamo siguiente;
     
     public ListaPrestamo(){
         nodo = null;
@@ -32,9 +32,6 @@ public class ListaPrestamo implements java.io.Serializable {
         } else {
             insertarPrestamo(apuntador.siguiente, Recurso, usuario, fechaPrestamo, fechaLimite);
         }
-        
-        
     }
-    
     
 }

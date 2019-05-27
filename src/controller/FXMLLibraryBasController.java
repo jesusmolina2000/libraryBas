@@ -302,6 +302,23 @@ public class FXMLLibraryBasController implements Initializable {
         
         int codigoUsuario = Integer.parseInt(textCodigoUsuarioPrestamo.getText());
         Usuario usuario = comunidad.buscarUsuarioId(comunidad, codigoUsuario);
+        if(usuario == null) {
+            //JOptionPane.showMessageDialog(null, "El usuario no existe");
+            return;
+        }
+        // Validación de prestamos
+        if(inventario.cuantosPrestamosPorUsuario(codigoUsuario) >= 2 && usuario.getTipo() == "Estudiante") {
+            //JOptionPane.showMessageDialog(null, "Este estudiante ya tiene dos prestamos y no puede tener más");
+            return;
+        }
+        if(inventario.cuantosPrestamosPorUsuario(codigoUsuario) >= 2 && usuario.getTipo() == "Padre de familia") {
+            //JOptionPane.showMessageDialog(null, "Este estudiante ya tiene dos prestamos y no puede tener más");
+            return;
+        }
+        if(inventario.cuantosPrestamosPorUsuario(codigoUsuario) >= 2 && usuario.getTipo() == "Docente") {
+            //JOptionPane.showMessageDialog(null, "Este estudiante ya tiene dos prestamos y no puede tener más");
+            return;
+        }
         
         LocalDate localDatePrestamo = datePickerFechaPrestamo.getValue();
         Instant instantPrestamo = Instant.from(localDatePrestamo.atStartOfDay(ZoneId.systemDefault()));

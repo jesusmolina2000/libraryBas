@@ -19,6 +19,17 @@ public class Inventario implements java.io.Serializable{
         listaRecurso = new ListaRecurso();
         listaPrestamo = new ListaPrestamo();
     }
+
+    public int cuantosPrestamosPorUsuario(int codigoUsuario) {
+        int count = 0;
+        ListaPrestamo apuntador = listaPrestamo;
+        while (apuntador.nodo != null) {
+            if(apuntador.nodo.getUsuario().getCodigoUsuario() == codigoUsuario) {
+                count++;
+            }
+        }
+        return count;
+    }
     
 
  /*   public Recurso recurso;

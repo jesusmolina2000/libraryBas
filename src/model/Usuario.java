@@ -59,5 +59,16 @@ public class Usuario implements java.io.Serializable {
     public Image getFoto() {
         return foto;
     }
-
+    
+    public String getTipo() {
+        if(this instanceof Estudiante) {
+            return "Estudiante";
+        } else {
+            if(this instanceof PadreDefamilia) {
+                return "Padre de familia";
+            } else {
+                return "Docente";
+            }
+        }
+    }
 }

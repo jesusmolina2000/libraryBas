@@ -52,4 +52,12 @@ public class Prestamo implements java.io.Serializable{
     public void pagarMulta(){
         multa.pagar();
     }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public Recurso getRecurso() {
+        return recurso;
+    }
 }
