@@ -15,7 +15,10 @@ public class Inventario implements java.io.Serializable{
     public ListaPrestamo listaPrestamo;
     
     
-    
+    public Inventario() {
+        listaRecurso = new ListaRecurso();
+        listaPrestamo = new ListaPrestamo();
+    }
     
 
  /*   public Recurso recurso;

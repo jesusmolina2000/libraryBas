@@ -174,7 +174,7 @@ public class FXMLLibraryBasController implements Initializable {
         comboBoxRol.getItems().addAll("Seleccione rol", "Estudiante", "Docente",
                 "Padre de familia");
         comunidad = new Comunidad();
-        inventario.listaRecurso = new ListaRecurso();
+        inventario = new Inventario();
         InicializarColumnas();
     }
     
