@@ -275,10 +275,10 @@ public class FXMLLibraryBasController implements Initializable {
         
         if(inventario.listaRecurso.buscarRecursoId(inventario.listaRecurso, codigoRecurso)==null) {
             inventario.listaRecurso.insertarRecurso(inventario.listaRecurso, nombreRecurso, codigoRecurso, tipo);
-            //JOptionPane.showMessageDialog(null, "!Agregado con exito¡");
+            mostrarNotificacion("!Agregado con exito¡");
         } else {
             inventario.listaRecurso.actualizarRecurso(nombreRecurso, codigoRecurso, tipo);
-            //JOptionPane.showMessageDialog(null, "!Actualizado con exito¡");
+            mostrarNotificacion("!Actualizado con exito¡");
         }
         
         textNombre.setText("");
@@ -294,7 +294,7 @@ public class FXMLLibraryBasController implements Initializable {
         int codigoRecurso = Integer.parseInt(textId.getText());
         inventario.listaRecurso = inventario.listaRecurso.eliminarRecurso(inventario.listaRecurso, codigoRecurso);
         LlenarListaRecursos();
-        //JOptionPane.showMessageDialog(null,"El recurso se elimino exitosamente");
+        mostrarNotificacion("El recurso se elimino exitosamente");
         textNombre.setText("");
         textId.setText("");
         comboBoxTipo.getSelectionModel().select(0);
@@ -309,10 +309,10 @@ public class FXMLLibraryBasController implements Initializable {
         
         if(comunidad.buscarUsuarioId(comunidad, codigoUsuario) == null) {
             comunidad.insertarUsuario(comunidad, nombreUsuario, codigoUsuario, tipo, foto);
-            //JOptionPane.showMessageDialog(null, "!Agregado con exito¡");
+            mostrarNotificacion("!Agregado con exito¡");
         } else {
             comunidad.actualizarUsuario(nombreUsuario, codigoUsuario, tipo, foto);
-            //JOptionPane.showMessageDialog(null, "!Actualizado con exito¡");
+            mostrarNotificacion("!Actualizado con exito¡");
         }
         
         textNombreUsuario.setText("");
@@ -342,27 +342,27 @@ public class FXMLLibraryBasController implements Initializable {
         int codigoRecurso = Integer.parseInt(comboBoxCodigoRecursoPrestamo.getSelectionModel().getSelectedItem().toString());
         Recurso recurso = inventario.listaRecurso.buscarRecursoId(inventario.listaRecurso, codigoRecurso);
         if(recurso.getPrestado()) {
-            //JOptionPane.showMessageDialog(null, "El recurso solicitado está prestado");
+            mostrarNotificacion("El recurso solicitado está prestado");
             return;
         }
         
         int codigoUsuario = Integer.parseInt(textCodigoUsuarioPrestamo.getText());
         Usuario usuario = comunidad.buscarUsuarioId(comunidad, codigoUsuario);
         if(usuario == null) {
-            //JOptionPane.showMessageDialog(null, "El usuario no existe");
+            mostrarNotificacion("El usuario no existe");
             return;
         }
         // Validación de prestamos
         if("Estudiante".equals(usuario.getTipo()) && inventario.cuantosPrestamosPorUsuario(codigoUsuario) == 2) {
-            //JOptionPane.showMessageDialog(null, "Este estudiante ya tiene dos prestamos y no puede tener más");
+            mostrarNotificacion("Este estudiante ya tiene dos prestamos y no puede tener más");
             return;
         }
         if("Padre de familia".equals(usuario.getTipo()) && inventario.cuantosPrestamosPorUsuario(codigoUsuario) == 1) {
-            //JOptionPane.showMessageDialog(null, "Este padre de familia ya tiene un prestamo y no puede tener más");
+            mostrarNotificacion("Este padre de familia ya tiene un prestamo y no puede tener más");
             return;
         }
         if("Docente".equals(usuario.getTipo()) && inventario.cuantosPrestamosPorUsuario(codigoUsuario) >= 4) {
-            //JOptionPane.showMessageDialog(null, "Este docente ya tiene cuatro prestamos y no puede tener más");
+            mostrarNotificacion("Este docente ya tiene cuatro prestamos y no puede tener más");
             return;
         }
         
@@ -375,34 +375,22 @@ public class FXMLLibraryBasController implements Initializable {
         Date fechaLimite = Date.from(instantLimite);
         
         inventario.listaPrestamo.insertarPrestamo(inventario.listaPrestamo, recurso, usuario, fechaPrestamo, fechaLimite);
-        //JOptionPane.showMessageDialog(null, "El prestamo ha sido registrado con exito");
         
+        comboBoxCodigoRecursoPrestamo.getSelectionModel().clearSelection();
+        textCodigoUsuarioPrestamo.clear();
+        datePickerFechaPrestamo.getEditor().clear();
+        datePickerFechaLimite.getEditor().clear();
+        mostrarNotificacion("El prestamo ha sido registrado con exito");
     }
     
-    private void LlenarListaUsuarios() {
-        tablaUsuarios.getItems().clear();
-        Comunidad apuntador = comunidad;
-        while(apuntador.nodo != null) {
-            tablaUsuarios.getItems().add(apuntador.nodo);
-            apuntador = apuntador.siguiente;
-        }
-    }
     
-    private void LlenarListaPrestamos(int codigoUsuario) {
-        tablaPrestamos.getItems().clear();
-        ListaPrestamo apuntador = inventario.listaPrestamo;
-        while(apuntador.nodo != null) {
-            tablaPrestamos.getItems().add(apuntador.nodo);
-            apuntador = apuntador.siguiente;
-        }
-    }
 
     @FXML
     private void setOnActionButtonBuscarPorId(ActionEvent event) {
         int codigoUsuario = Integer.parseInt(textIdUsuario.getText());
         Usuario usuarioEncontrado = comunidad.buscarUsuarioId(comunidad, codigoUsuario);
         if(usuarioEncontrado == null) {
-            //JOptionPane.showMessageDialog(null, "Usuario no encontrado");
+            mostrarNotificacion("Usuario no encontrado");
         } else {
             textNombreUsuario.setText(usuarioEncontrado.getNombreUsuario());
             textIdUsuario.setText("" + usuarioEncontrado.getCodigoUsuario());
@@ -425,7 +413,7 @@ public class FXMLLibraryBasController implements Initializable {
        int codigoRecurso = Integer.parseInt(textId.getText());
         Recurso recursoEncontrado = inventario.listaRecurso.buscarRecursoId(inventario.listaRecurso, codigoRecurso);
         if(recursoEncontrado == null) {
-            //JOptionPane.showMessageDialog(null, "recurso no encontrado");
+            mostrarNotificacion("recurso no encontrado");
         } else {
             textNombre.setText(recursoEncontrado.getNombreRecurso());
             textId.setText("" + recursoEncontrado.getCodigoRecurso());
@@ -443,14 +431,37 @@ public class FXMLLibraryBasController implements Initializable {
             apuntador = apuntador.siguiente;
         }
     }
+    
+    private void LlenarListaUsuarios() {
+        tablaUsuarios.getItems().clear();
+        Comunidad apuntador = comunidad;
+        while(apuntador.nodo != null) {
+            tablaUsuarios.getItems().add(apuntador.nodo);
+            apuntador = apuntador.siguiente;
+        }
+    }
+    
+    private void LlenarListaPrestamos(int codigoUsuario) {
+        tablaPrestamos.getItems().clear();
+        ListaPrestamo apuntador = inventario.listaPrestamo;
+        while(apuntador.nodo != null) {
+            tablaPrestamos.getItems().add(apuntador.nodo);
+            apuntador = apuntador.siguiente;
+        }
+    }
 
     @FXML
     private void setOnActionButtonBuscarPrestamos(ActionEvent event) {
         int codigoUsuario = Integer.parseInt(textCodigoUsuarioPrestamo.getText());
         Usuario usuarioEncontrado = comunidad.buscarUsuarioId(comunidad, codigoUsuario);
         if(usuarioEncontrado == null) {
-            //JOptionPane.showMessageDialog(null, "El usuario no fue encontrado.");
+            mostrarNotificacion("El usuario no fue encontrado.");
         }
         LlenarListaPrestamos(codigoUsuario);
+    }
+    
+    private void mostrarNotificacion(String mensaje) {
+        //JOptionPane.showMessageDialog(null, "El usuario no fue encontrado.");
+        System.out.println(mensaje);
     }
 }
