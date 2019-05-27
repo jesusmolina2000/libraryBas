@@ -15,22 +15,7 @@ import javafx.scene.image.Image;
  */
 public class Estudiante extends Usuario implements java.io.Serializable {
 
-    private final StringProperty curso = new SimpleStringProperty();
-
     public Estudiante(String nombreUsuario, int codigoUsuario, Image foto) {
         super(nombreUsuario, codigoUsuario, foto, "Estudiante");
     }
-
-    public String getCurso() {
-        return curso.get();
-    }
-
-    public void setCurso(String value) {
-        curso.set(value);
-    }
-
-    public StringProperty cursoProperty() {
-        return curso;
-    }
-
 }
