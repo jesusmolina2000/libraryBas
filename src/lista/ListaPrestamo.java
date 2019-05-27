@@ -25,6 +25,7 @@ public class ListaPrestamo implements java.io.Serializable {
     
     public void insertarPrestamo(ListaPrestamo apuntador, Recurso Recurso, Usuario usuario, Date fechaPrestamo, Date fechaLimite) {
         if(apuntador.nodo == null) {
+            Recurso.Prestar();
             Prestamo nuevoPrestamo = new Prestamo(Recurso, usuario, fechaPrestamo, fechaLimite);
             nodo = nuevoPrestamo;
             siguiente = new ListaPrestamo();

@@ -10,6 +10,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -292,18 +295,23 @@ public class FXMLLibraryBasController implements Initializable {
     private void setOnActionButtonRealizarPrestamo(ActionEvent event) {
         int codigoRecurso = Integer.parseInt(comboBoxCodigoRecursoPrestamo.getSelectionModel().getSelectedItem().toString());
         Recurso recurso = inventario.listaRecurso.buscarRecursoId(inventario.listaRecurso, codigoRecurso);
-        /*if(recurso.getPrestado()) {
+        if(recurso.getPrestado()) {
             //JOptionPane.showMessageDialog(null, "El recurso solicitado está prestado");
             return;
-        }*/
+        }
         
         int codigoUsuario = Integer.parseInt(textCodigoUsuarioPrestamo.getText());
         Usuario usuario = comunidad.buscarUsuarioId(comunidad, codigoUsuario);
         
-        Date fechaPrestamo = new Date(datePickerFechaPrestamo.getValue().toEpochDay());
-        Date fechaLimite = new Date(datePickerFechaLimite.getValue().toEpochDay());
+        LocalDate localDatePrestamo = datePickerFechaPrestamo.getValue();
+        Instant instantPrestamo = Instant.from(localDatePrestamo.atStartOfDay(ZoneId.systemDefault()));
+        Date fechaPrestamo = Date.from(instantPrestamo);
         
-        //inventario.listaPrestamo.insertarPrestamo(inventario.listaPrestamo, recurso, usuario, fechaPrestamo, fechaLimite);
+        LocalDate localDateLimite = datePickerFechaLimite.getValue();
+        Instant instantLimite = Instant.from(localDateLimite.atStartOfDay(ZoneId.systemDefault()));
+        Date fechaLimite = Date.from(instantLimite);
+        
+        inventario.listaPrestamo.insertarPrestamo(inventario.listaPrestamo, recurso, usuario, fechaPrestamo, fechaLimite);
         //JOptionPane.showMessageDialog(null, "El prestamo ha sido registrado con exito");
         
     }
