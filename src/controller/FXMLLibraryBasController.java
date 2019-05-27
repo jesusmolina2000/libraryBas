@@ -352,15 +352,7 @@ public class FXMLLibraryBasController implements Initializable {
             textNombreUsuario.setText(usuarioEncontrado.getNombreUsuario());
             textIdUsuario.setText("" + usuarioEncontrado.getCodigoUsuario());
             imageViewFoto.imageProperty().set(usuarioEncontrado.getFoto());
-            if(usuarioEncontrado instanceof Estudiante) {
-                comboBoxRol.getSelectionModel().select("Estudiante");
-            } else {
-                if(usuarioEncontrado instanceof Docente) {
-                    comboBoxRol.getSelectionModel().select("Docente");
-                } else {
-                    comboBoxRol.getSelectionModel().select("Padre de familia");
-                }
-            }
+            comboBoxRol.getSelectionModel().select(usuarioEncontrado.getTipo());
         }
     }
 
