@@ -17,10 +17,8 @@ public class Estudiante extends Usuario implements java.io.Serializable {
 
     private final StringProperty curso = new SimpleStringProperty();
 
-
-    public Estudiante(String nommbreUsuario, int codigoUsuario, String curso, Image foto) {
-        super(nommbreUsuario, codigoUsuario, foto);
-        setCurso(curso);
+    public Estudiante(String nombreUsuario, int codigoUsuario, Image foto) {
+        super(nombreUsuario, codigoUsuario, foto, "Estudiante");
     }
 
     public String getCurso() {

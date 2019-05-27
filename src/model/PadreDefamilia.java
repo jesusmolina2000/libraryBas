@@ -12,9 +12,8 @@ import javafx.scene.image.Image;
  * @author jesus
  */
 public class PadreDefamilia extends Usuario implements java.io.Serializable{
-    
     public PadreDefamilia(String nommbreUsuario, int codigoUsuario, Image foto) {
-        super(nommbreUsuario, codigoUsuario, foto);
+        super(nommbreUsuario, codigoUsuario, foto, "Padre de familia");
     }
      
 }

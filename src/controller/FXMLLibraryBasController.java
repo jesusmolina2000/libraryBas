@@ -16,6 +16,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -163,6 +164,10 @@ public class FXMLLibraryBasController implements Initializable {
     private Button buttonRealizarBuscarPrestamos;
     @FXML
     private ComboBox comboBoxCodigoRecursoPrestamo;
+    @FXML
+    private TableColumn<?, ?> columnaPrestamoFechaDevolucion;
+    @FXML
+    private TableColumn<?, ?> columnaTipoUsuario;
 
     /**
      * Initializes the controller class.
@@ -184,6 +189,7 @@ public class FXMLLibraryBasController implements Initializable {
     private void InicializarColumnas() {
         columnaNombre.setCellValueFactory(new PropertyValueFactory<>("nombreUsuario"));
         columnaId.setCellValueFactory(new PropertyValueFactory<>("codigoUsuario"));
+        columnaTipoUsuario.setCellValueFactory(new PropertyValueFactory<>("tipo"));
         
         columnaIdRecurso.setCellValueFactory(new PropertyValueFactory<>("codigoRecurso"));
         columnaNombreRecurso.setCellValueFactory(new PropertyValueFactory<>("nombreRecurso"));
@@ -307,16 +313,16 @@ public class FXMLLibraryBasController implements Initializable {
             return;
         }
         // Validación de prestamos
-        if(inventario.cuantosPrestamosPorUsuario(codigoUsuario) >= 2 && usuario.getTipo() == "Estudiante") {
+        if("Estudiante".equals(usuario.getTipo()) && inventario.cuantosPrestamosPorUsuario(codigoUsuario) == 2) {
             //JOptionPane.showMessageDialog(null, "Este estudiante ya tiene dos prestamos y no puede tener más");
             return;
         }
-        if(inventario.cuantosPrestamosPorUsuario(codigoUsuario) >= 2 && usuario.getTipo() == "Padre de familia") {
-            //JOptionPane.showMessageDialog(null, "Este estudiante ya tiene dos prestamos y no puede tener más");
+        if("Padre de familia".equals(usuario.getTipo()) && inventario.cuantosPrestamosPorUsuario(codigoUsuario) == 1) {
+            //JOptionPane.showMessageDialog(null, "Este padre de familia ya tiene un prestamo y no puede tener más");
             return;
         }
-        if(inventario.cuantosPrestamosPorUsuario(codigoUsuario) >= 2 && usuario.getTipo() == "Docente") {
-            //JOptionPane.showMessageDialog(null, "Este estudiante ya tiene dos prestamos y no puede tener más");
+        if("Docente".equals(usuario.getTipo()) && inventario.cuantosPrestamosPorUsuario(codigoUsuario) >= 4) {
+            //JOptionPane.showMessageDialog(null, "Este docente ya tiene cuatro prestamos y no puede tener más");
             return;
         }
         
@@ -340,6 +346,10 @@ public class FXMLLibraryBasController implements Initializable {
             tablaUsuarios.getItems().add(apuntador.nodo);
             apuntador = apuntador.siguiente;
         }
+    }
+    
+    private void LlenarListaPrestamos(int codigoUsuario) {
+        tablaPrestamos.getItems().clear();
     }
 
     @FXML

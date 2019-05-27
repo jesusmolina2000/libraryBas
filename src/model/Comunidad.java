@@ -38,7 +38,7 @@ public class Comunidad implements java.io.Serializable {
             Usuario nuevoUsuario = null;
             switch (tipoUsuario) {
                 case "Estudiante":
-                    nuevoUsuario = new Estudiante(nombreUsuario, codigoUsuario, tipoUsuario, foto);
+                    nuevoUsuario = new Estudiante(nombreUsuario, codigoUsuario, foto);
                     break;
                 case "Docente":
                     nuevoUsuario = new Docente(nombreUsuario, codigoUsuario, nombreUsuario, foto);
