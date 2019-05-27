@@ -27,6 +27,7 @@ public class Inventario implements java.io.Serializable{
             if(apuntador.nodo.getUsuario().getCodigoUsuario() == codigoUsuario) {
                 count++;
             }
+            apuntador = apuntador.siguiente;
         }
         return count;
     }

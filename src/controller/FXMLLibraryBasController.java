@@ -15,6 +15,8 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,6 +29,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -41,12 +44,15 @@ import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import javax.swing.JOptionPane;
+import lista.ListaPrestamo;
 import lista.ListaRecurso;
 import model.Comunidad;
 import model.Docente;
 import model.Estudiante;
 import model.Inventario;
+import model.Prestamo;
 import model.Recurso;
 import model.Usuario;
 
@@ -149,23 +155,23 @@ public class FXMLLibraryBasController implements Initializable {
     @FXML
     private TableColumn<?, ?> columnaNombreRecurso;
     @FXML
-    private TableView<?> tablaPrestamos;
+    private TableView<Prestamo> tablaPrestamos;
     @FXML
-    private TableColumn<?, ?> columnaPrestamoUsuario;
+    private TableColumn<Prestamo, String> columnaPrestamoUsuario;
     @FXML
-    private TableColumn<?, ?> columnaPrestamoRecurso;
+    private TableColumn<Prestamo, String> columnaPrestamoRecurso;
     @FXML
-    private TableColumn<?, ?> columnaPrestamoFechaPrestamo;
+    private TableColumn<Prestamo, String> columnaPrestamoFechaPrestamo;
     @FXML
-    private TableColumn<?, ?> columnaPrestamoFechaLimite;
+    private TableColumn<Prestamo, String> columnaPrestamoFechaLimite;
     @FXML
-    private TableColumn<?, ?> columnaPrestamoMultado;
+    private TableColumn<Prestamo, String> columnaPrestamoMultado;
     @FXML
     private Button buttonRealizarBuscarPrestamos;
     @FXML
     private ComboBox comboBoxCodigoRecursoPrestamo;
     @FXML
-    private TableColumn<?, ?> columnaPrestamoFechaDevolucion;
+    private TableColumn<Prestamo, String> columnaPrestamoFechaDevolucion;
     @FXML
     private TableColumn<?, ?> columnaTipoUsuario;
 
@@ -184,6 +190,20 @@ public class FXMLLibraryBasController implements Initializable {
         comunidad = new Comunidad();
         inventario = new Inventario();
         InicializarColumnas();
+        CargarDataDePrueba(); // Quitar
+    }
+    
+    private void CargarDataDePrueba() {
+        comunidad.insertarUsuario(comunidad, "Jesus Molina", 123, "Estudiante", null);
+        comunidad.insertarUsuario(comunidad, "Freddy Rada", 321, "Docente", null);
+        comunidad.insertarUsuario(comunidad, "Alberto Molina", 777, "Padre de familia", null);
+        comunidad.insertarUsuario(comunidad, "Yolanda Heredia", 888, "Padre de familia", null);
+        
+        inventario.listaRecurso.insertarRecurso(inventario.listaRecurso, "Cien años de soledad", 1, "Libro");
+        inventario.listaRecurso.insertarRecurso(inventario.listaRecurso, "Enciclopedia Encarta", 2, "CD");
+        inventario.listaRecurso.insertarRecurso(inventario.listaRecurso, "Revista Semana Mayo 2019", 3, "Revista");
+        LlenarListaRecursos();
+        LlenarListaUsuarios();
     }
     
     private void InicializarColumnas() {
@@ -194,6 +214,26 @@ public class FXMLLibraryBasController implements Initializable {
         columnaIdRecurso.setCellValueFactory(new PropertyValueFactory<>("codigoRecurso"));
         columnaNombreRecurso.setCellValueFactory(new PropertyValueFactory<>("nombreRecurso"));
         columnaTipoRecurso.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+        
+        
+        columnaPrestamoRecurso.setCellValueFactory((CellDataFeatures<Prestamo, String> p) -> 
+                new ReadOnlyObjectWrapper("" + p.getValue().getRecurso().getCodigoRecurso()) 
+        );
+        columnaPrestamoUsuario.setCellValueFactory((CellDataFeatures<Prestamo, String> p) -> 
+                new ReadOnlyObjectWrapper("" + p.getValue().getUsuario().getCodigoUsuario()) 
+        );
+        columnaPrestamoFechaPrestamo.setCellValueFactory((CellDataFeatures<Prestamo, String> p) -> 
+                new ReadOnlyObjectWrapper(p.getValue().getFechaPrestamo().toString()) 
+        );
+        columnaPrestamoFechaLimite.setCellValueFactory((CellDataFeatures<Prestamo, String> p) -> 
+                new ReadOnlyObjectWrapper(p.getValue().getFechaLimite().toString()) 
+        );
+        columnaPrestamoFechaDevolucion.setCellValueFactory((CellDataFeatures<Prestamo, String> p) -> 
+                new ReadOnlyObjectWrapper(p.getValue().getFechaDevolucionString()) 
+        );
+        columnaPrestamoMultado.setCellValueFactory((CellDataFeatures<Prestamo, String> p) -> 
+                new ReadOnlyObjectWrapper("" + p.getValue().estaMultado()) 
+        );
     }
 
     @FXML
@@ -350,6 +390,11 @@ public class FXMLLibraryBasController implements Initializable {
     
     private void LlenarListaPrestamos(int codigoUsuario) {
         tablaPrestamos.getItems().clear();
+        ListaPrestamo apuntador = inventario.listaPrestamo;
+        while(apuntador.nodo != null) {
+            tablaPrestamos.getItems().add(apuntador.nodo);
+            apuntador = apuntador.siguiente;
+        }
     }
 
     @FXML
@@ -401,5 +446,11 @@ public class FXMLLibraryBasController implements Initializable {
 
     @FXML
     private void setOnActionButtonBuscarPrestamos(ActionEvent event) {
+        int codigoUsuario = Integer.parseInt(textCodigoUsuarioPrestamo.getText());
+        Usuario usuarioEncontrado = comunidad.buscarUsuarioId(comunidad, codigoUsuario);
+        if(usuarioEncontrado == null) {
+            //JOptionPane.showMessageDialog(null, "El usuario no fue encontrado.");
+        }
+        LlenarListaPrestamos(codigoUsuario);
     }
 }
