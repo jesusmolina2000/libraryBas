@@ -10,10 +10,9 @@ import java.util.Date;
  *
  * @author jesus
  */
-public class Prestamo implements java.io.Serializable{
-
-    public Prestamo siguiente;
+public class Prestamo implements java.io.Serializable {
     
+    private int id;
     private Recurso recurso;
     private Usuario usuario;
     private Date fechaDevolucion;
@@ -21,12 +20,12 @@ public class Prestamo implements java.io.Serializable{
     private Date fechaLimite;
     private Multa multa;
 
-    public Prestamo(Recurso recurso, Usuario usuario, Date fechaPrestamo, Date fechaLimite) {
-        siguiente=null;
+    public Prestamo(Recurso recurso, Usuario usuario, Date fechaPrestamo, Date fechaLimite, int id) {
         this.recurso = recurso;
         this.usuario = usuario;
         this.fechaPrestamo = fechaPrestamo;
         this.fechaLimite = fechaLimite;
+        this.id = id;
     }
 
     public Date getFechaPrestamo() {
@@ -53,6 +52,7 @@ public class Prestamo implements java.io.Serializable{
     
     public void devolverRecurso(Date fechaDevolucion) {
         this.fechaDevolucion = fechaDevolucion;
+        this.recurso.Devolver();
     }
     
     public boolean estaDevuelto() {
@@ -76,6 +76,18 @@ public class Prestamo implements java.io.Serializable{
     }
     
     public boolean estaMultado() {
-        return multa != null;
+        if(multa == null) {
+            return false;
+        } else {
+            return !multa.estaPagada();
+        }
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

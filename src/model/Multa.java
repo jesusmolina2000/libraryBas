@@ -23,7 +23,7 @@ public class Multa implements java.io.Serializable {
         pagada = true;
     }
 
-    public boolean isPagada() {
+    public boolean estaPagada() {
         return pagada;
     }
     
