@@ -509,8 +509,7 @@ public class FXMLLibraryBasController implements Initializable {
     }
 
     private void mostrarNotificacion(String mensaje) {
-        //JOptionPane.showMessageDialog(null, "El usuario no fue encontrado.");
-        System.out.println(mensaje);
+        JOptionPane.showMessageDialog(null, mensaje);
     }
 
     @FXML

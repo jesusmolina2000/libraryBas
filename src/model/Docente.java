@@ -15,23 +15,7 @@ import javafx.scene.image.Image;
  */
 public class Docente extends Usuario implements java.io.Serializable {
 
-    private final StringProperty asignatura = new SimpleStringProperty();
-
-    public Docente(String nombreUsuario, int codigoUsuario, String nombreAsignatura, Image foto) {
+    public Docente(String nombreUsuario, int codigoUsuario, Image foto) {
         super(nombreUsuario, codigoUsuario, foto, "Docente");
-        setAsignatura(nombreAsignatura);
     }
-
-    public String getAsignatura() {
-        return asignatura.get();
-    }
-
-    public void setAsignatura(String value) {
-        asignatura.set(value);
-    }
-
-    public StringProperty asignaturaProperty() {
-        return asignatura;
-    }
-
 }

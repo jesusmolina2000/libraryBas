@@ -23,16 +23,6 @@ public class Comunidad implements java.io.Serializable {
         siguiente = null;
     }
 
-    /*public Usuario ultimoUsuario() {
-        Usuario apuntador = usuario;
-        while (apuntador != null) {
-            if (apuntador.siguiente == null) {
-                return apuntador;
-            }
-            apuntador = apuntador.siguiente;
-        }
-        return null;
-    }*/
     public void insertarUsuario(Comunidad apuntador, String nombreUsuario, int codigoUsuario, String tipoUsuario, Image foto) {
         if (apuntador.siguiente == null) {
             Usuario nuevoUsuario = null;
@@ -41,7 +31,7 @@ public class Comunidad implements java.io.Serializable {
                     nuevoUsuario = new Estudiante(nombreUsuario, codigoUsuario, foto);
                     break;
                 case "Docente":
-                    nuevoUsuario = new Docente(nombreUsuario, codigoUsuario, nombreUsuario, foto);
+                    nuevoUsuario = new Docente(nombreUsuario, codigoUsuario, foto);
                     break;
                 case "Padre de familia":
                     nuevoUsuario = new PadreDefamilia(nombreUsuario, codigoUsuario, foto);

@@ -21,16 +21,6 @@ public class ListaRecurso implements java.io.Serializable {
         siguiente = null;
     }
 
-    /*public Usuario ultimoUsuario() {
-        Usuario apuntador = usuario;
-        while (apuntador != null) {
-            if (apuntador.siguiente == null) {
-                return apuntador;
-            }
-            apuntador = apuntador.siguiente;
-        }
-        return null;
-    }*/
     public void insertarRecurso(ListaRecurso apuntador, String nombreRecurso, int codigoRecurso, String tipo) {
         if (apuntador.siguiente == null) {
             Recurso nuevoRecurso = new Recurso(nombreRecurso, codigoRecurso, tipo);
