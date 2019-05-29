@@ -79,8 +79,6 @@ public class FXMLLibraryBasController implements Initializable {
     @FXML
     private Button buttonDevolucion;
     @FXML
-    private Button buttonMulta;
-    @FXML
     private TextField textId;
     @FXML
     private ComboBox<String> comboBoxTipo;
@@ -88,8 +86,6 @@ public class FXMLLibraryBasController implements Initializable {
     private Pane paneEstado;
     @FXML
     private Label labelEstado;
-    @FXML
-    private GridPane gridPaneMulta;
     @FXML
     private GridPane gridPaneDevolucion;
     @FXML
@@ -115,11 +111,7 @@ public class FXMLLibraryBasController implements Initializable {
     @FXML
     private Button buttonDevolver;
     @FXML
-    private Button buttonMultar;
-    @FXML
     private Button buttonPagarMulta;
-    @FXML
-    private TextField textIdUsuarioMulta;
     @FXML
     private TextField textNombre;
     @FXML
@@ -220,76 +212,75 @@ public class FXMLLibraryBasController implements Initializable {
         InicializarColumnas();
         CargarDataDePrueba(); // Quitar
     }
-    
+
     private void CargarDataDePrueba() {
         comunidad.insertarUsuario(comunidad, "Jesus Molina", 123, "Estudiante", null);
         comunidad.insertarUsuario(comunidad, "Freddy Rada", 321, "Docente", null);
         comunidad.insertarUsuario(comunidad, "Alberto Molina", 777, "Padre de familia", null);
         comunidad.insertarUsuario(comunidad, "Yolanda Heredia", 888, "Padre de familia", null);
-        
+
         inventario.listaRecurso.insertarRecurso(inventario.listaRecurso, "Cien años de soledad", 1, "Libro");
         inventario.listaRecurso.insertarRecurso(inventario.listaRecurso, "Enciclopedia Encarta", 2, "CD");
         inventario.listaRecurso.insertarRecurso(inventario.listaRecurso, "Revista Semana Mayo 2019", 3, "Revista");
-        
+
         LlenarListaRecursos();
         LlenarListaUsuarios();
     }
-    
+
     private void InicializarColumnas() {
         columnaNombre.setCellValueFactory(new PropertyValueFactory<>("nombreUsuario"));
         columnaId.setCellValueFactory(new PropertyValueFactory<>("codigoUsuario"));
         columnaTipoUsuario.setCellValueFactory(new PropertyValueFactory<>("tipo"));
-        
+
         columnaIdRecurso.setCellValueFactory(new PropertyValueFactory<>("codigoRecurso"));
         columnaNombreRecurso.setCellValueFactory(new PropertyValueFactory<>("nombreRecurso"));
         columnaTipoRecurso.setCellValueFactory(new PropertyValueFactory<>("tipo"));
-        columnaRecursoPrestado.setCellValueFactory((CellDataFeatures<Recurso, String> p) -> 
-                new ReadOnlyObjectWrapper(p.getValue().getPrestado() ? "Si" : "No") 
+        columnaRecursoPrestado.setCellValueFactory((CellDataFeatures<Recurso, String> p)
+                -> new ReadOnlyObjectWrapper(p.getValue().getPrestado() ? "Si" : "No")
         );
-        
-        
-        columnaPrestamoRecurso.setCellValueFactory((CellDataFeatures<Prestamo, String> p) -> 
-                new ReadOnlyObjectWrapper("" + p.getValue().getRecurso().getCodigoRecurso()) 
+
+        columnaPrestamoRecurso.setCellValueFactory((CellDataFeatures<Prestamo, String> p)
+                -> new ReadOnlyObjectWrapper("" + p.getValue().getRecurso().getCodigoRecurso())
         );
-        columnaPrestamoUsuario.setCellValueFactory((CellDataFeatures<Prestamo, String> p) -> 
-                new ReadOnlyObjectWrapper("" + p.getValue().getUsuario().getCodigoUsuario()) 
+        columnaPrestamoUsuario.setCellValueFactory((CellDataFeatures<Prestamo, String> p)
+                -> new ReadOnlyObjectWrapper("" + p.getValue().getUsuario().getCodigoUsuario())
         );
-        columnaPrestamoFechaPrestamo.setCellValueFactory((CellDataFeatures<Prestamo, String> p) -> 
-                new ReadOnlyObjectWrapper(p.getValue().getFechaPrestamo().toString()) 
+        columnaPrestamoFechaPrestamo.setCellValueFactory((CellDataFeatures<Prestamo, String> p)
+                -> new ReadOnlyObjectWrapper(p.getValue().getFechaPrestamo().toString())
         );
-        columnaPrestamoFechaLimite.setCellValueFactory((CellDataFeatures<Prestamo, String> p) -> 
-                new ReadOnlyObjectWrapper(p.getValue().getFechaLimite().toString()) 
+        columnaPrestamoFechaLimite.setCellValueFactory((CellDataFeatures<Prestamo, String> p)
+                -> new ReadOnlyObjectWrapper(p.getValue().getFechaLimite().toString())
         );
-        columnaPrestamoFechaDevolucion.setCellValueFactory((CellDataFeatures<Prestamo, String> p) -> 
-                new ReadOnlyObjectWrapper(p.getValue().getFechaDevolucionString()) 
+        columnaPrestamoFechaDevolucion.setCellValueFactory((CellDataFeatures<Prestamo, String> p)
+                -> new ReadOnlyObjectWrapper(p.getValue().getFechaDevolucionString())
         );
-        columnaPrestamoMultado.setCellValueFactory((CellDataFeatures<Prestamo, String> p) -> 
-                new ReadOnlyObjectWrapper(p.getValue().estaMultado() ? "Si" : "No") 
+        columnaPrestamoMultado.setCellValueFactory((CellDataFeatures<Prestamo, String> p)
+                -> new ReadOnlyObjectWrapper(p.getValue().estaMultado() ? "Si" : "No")
         );
-        columnaPrestamoId.setCellValueFactory((CellDataFeatures<Prestamo, String> p) -> 
-                new ReadOnlyObjectWrapper("" + p.getValue().getId())
+        columnaPrestamoId.setCellValueFactory((CellDataFeatures<Prestamo, String> p)
+                -> new ReadOnlyObjectWrapper("" + p.getValue().getId())
         );
-        
-        columnaPrestamoRecursoDevoluciones.setCellValueFactory((CellDataFeatures<Prestamo, String> p) -> 
-                new ReadOnlyObjectWrapper("" + p.getValue().getRecurso().getCodigoRecurso()) 
+
+        columnaPrestamoRecursoDevoluciones.setCellValueFactory((CellDataFeatures<Prestamo, String> p)
+                -> new ReadOnlyObjectWrapper("" + p.getValue().getRecurso().getCodigoRecurso())
         );
-        columnaPrestamoUsuarioDevoluciones.setCellValueFactory((CellDataFeatures<Prestamo, String> p) -> 
-                new ReadOnlyObjectWrapper("" + p.getValue().getUsuario().getCodigoUsuario()) 
+        columnaPrestamoUsuarioDevoluciones.setCellValueFactory((CellDataFeatures<Prestamo, String> p)
+                -> new ReadOnlyObjectWrapper("" + p.getValue().getUsuario().getCodigoUsuario())
         );
-        columnaPrestamoFechaPrestamoDevoluciones.setCellValueFactory((CellDataFeatures<Prestamo, String> p) -> 
-                new ReadOnlyObjectWrapper(p.getValue().getFechaPrestamo().toString()) 
+        columnaPrestamoFechaPrestamoDevoluciones.setCellValueFactory((CellDataFeatures<Prestamo, String> p)
+                -> new ReadOnlyObjectWrapper(p.getValue().getFechaPrestamo().toString())
         );
-        columnaPrestamoFechaLimiteDevoluciones.setCellValueFactory((CellDataFeatures<Prestamo, String> p) -> 
-                new ReadOnlyObjectWrapper(p.getValue().getFechaLimite().toString()) 
+        columnaPrestamoFechaLimiteDevoluciones.setCellValueFactory((CellDataFeatures<Prestamo, String> p)
+                -> new ReadOnlyObjectWrapper(p.getValue().getFechaLimite().toString())
         );
-        columnaPrestamoFechaDevolucion1.setCellValueFactory((CellDataFeatures<Prestamo, String> p) -> 
-                new ReadOnlyObjectWrapper(p.getValue().getFechaDevolucionString()) 
+        columnaPrestamoFechaDevolucion1.setCellValueFactory((CellDataFeatures<Prestamo, String> p)
+                -> new ReadOnlyObjectWrapper(p.getValue().getFechaDevolucionString())
         );
-        columnaPrestamoMultadoDevoluciones.setCellValueFactory((CellDataFeatures<Prestamo, String> p) -> 
-                new ReadOnlyObjectWrapper(p.getValue().estaMultado() ? "Si" : "No") 
+        columnaPrestamoMultadoDevoluciones.setCellValueFactory((CellDataFeatures<Prestamo, String> p)
+                -> new ReadOnlyObjectWrapper(p.getValue().estaMultado() ? "Si" : "No")
         );
-        columnaPrestamoIdDevoluciones.setCellValueFactory((CellDataFeatures<Prestamo, String> p) -> 
-                new ReadOnlyObjectWrapper("" + p.getValue().getId())
+        columnaPrestamoIdDevoluciones.setCellValueFactory((CellDataFeatures<Prestamo, String> p)
+                -> new ReadOnlyObjectWrapper("" + p.getValue().getId())
         );
     }
 
@@ -307,9 +298,6 @@ public class FXMLLibraryBasController implements Initializable {
         } else if (event.getSource() == buttonDevolucion) {
             labelEstado.setText("Devoluciones");
             gridPaneDevolucion.toFront();
-        } else if (event.getSource() == buttonMulta) {
-            labelEstado.setText("Multas");
-            gridPaneMulta.toFront();
         }
     }
 
@@ -329,19 +317,19 @@ public class FXMLLibraryBasController implements Initializable {
         String nombreRecurso = textNombre.getText();
         int codigoRecurso = Integer.parseInt(textId.getText());
         String tipo = comboBoxTipo.getValue();
-        
-        if(inventario.listaRecurso.buscarRecursoId(inventario.listaRecurso, codigoRecurso)==null) {
+
+        if (inventario.listaRecurso.buscarRecursoId(inventario.listaRecurso, codigoRecurso) == null) {
             inventario.listaRecurso.insertarRecurso(inventario.listaRecurso, nombreRecurso, codigoRecurso, tipo);
             mostrarNotificacion("!Agregado con exito¡");
         } else {
             inventario.listaRecurso.actualizarRecurso(nombreRecurso, codigoRecurso, tipo);
             mostrarNotificacion("!Actualizado con exito¡");
         }
-        
+
         textNombre.setText("");
         textId.setText("");
         comboBoxTipo.getSelectionModel().select(0);
-        
+
         LlenarListaRecursos();
 
     }
@@ -363,22 +351,22 @@ public class FXMLLibraryBasController implements Initializable {
         int codigoUsuario = Integer.parseInt(textIdUsuario.getText());
         String tipo = comboBoxRol.getValue();
         Image foto = imageViewFoto.getImage();
-        
-        if(comunidad.buscarUsuarioId(comunidad, codigoUsuario) == null) {
+
+        if (comunidad.buscarUsuarioId(comunidad, codigoUsuario) == null) {
             comunidad.insertarUsuario(comunidad, nombreUsuario, codigoUsuario, tipo, foto);
             mostrarNotificacion("!Agregado con exito¡");
         } else {
             comunidad.actualizarUsuario(nombreUsuario, codigoUsuario, tipo, foto);
             mostrarNotificacion("!Actualizado con exito¡");
         }
-        
+
         textNombreUsuario.setText("");
         textIdUsuario.setText("");
         imageViewFoto.imageProperty().set(null);
         comboBoxRol.getSelectionModel().select(0);
-        
+
         LlenarListaUsuarios();
-        
+
     }
 
     @FXML
@@ -398,41 +386,41 @@ public class FXMLLibraryBasController implements Initializable {
     private void setOnActionButtonRealizarPrestamo(ActionEvent event) {
         int codigoRecurso = Integer.parseInt(comboBoxCodigoRecursoPrestamo.getSelectionModel().getSelectedItem().toString());
         Recurso recurso = inventario.listaRecurso.buscarRecursoId(inventario.listaRecurso, codigoRecurso);
-        if(recurso.getPrestado()) {
+        if (recurso.getPrestado()) {
             mostrarNotificacion("El recurso solicitado está prestado");
             return;
         }
-        
+
         int codigoUsuario = Integer.parseInt(textCodigoUsuarioPrestamo.getText());
         Usuario usuario = comunidad.buscarUsuarioId(comunidad, codigoUsuario);
-        if(usuario == null) {
+        if (usuario == null) {
             mostrarNotificacion("El usuario no existe");
             return;
         }
         // Validación de prestamos
-        if("Estudiante".equals(usuario.getTipo()) && inventario.cuantosPrestamosPorUsuario(codigoUsuario) == 2) {
+        if ("Estudiante".equals(usuario.getTipo()) && inventario.cuantosPrestamosPorUsuario(codigoUsuario) == 2) {
             mostrarNotificacion("Este estudiante ya tiene dos prestamos y no puede tener más");
             return;
         }
-        if("Padre de familia".equals(usuario.getTipo()) && inventario.cuantosPrestamosPorUsuario(codigoUsuario) == 1) {
+        if ("Padre de familia".equals(usuario.getTipo()) && inventario.cuantosPrestamosPorUsuario(codigoUsuario) == 1) {
             mostrarNotificacion("Este padre de familia ya tiene un prestamo y no puede tener más");
             return;
         }
-        if("Docente".equals(usuario.getTipo()) && inventario.cuantosPrestamosPorUsuario(codigoUsuario) >= 4) {
+        if ("Docente".equals(usuario.getTipo()) && inventario.cuantosPrestamosPorUsuario(codigoUsuario) >= 4) {
             mostrarNotificacion("Este docente ya tiene cuatro prestamos y no puede tener más");
             return;
         }
-        
+
         LocalDate localDatePrestamo = datePickerFechaPrestamo.getValue();
         Instant instantPrestamo = Instant.from(localDatePrestamo.atStartOfDay(ZoneId.systemDefault()));
         Date fechaPrestamo = Date.from(instantPrestamo);
-        
+
         LocalDate localDateLimite = datePickerFechaLimite.getValue();
         Instant instantLimite = Instant.from(localDateLimite.atStartOfDay(ZoneId.systemDefault()));
         Date fechaLimite = Date.from(instantLimite);
-        
+
         inventario.listaPrestamo.insertarPrestamo(inventario.listaPrestamo, recurso, usuario, fechaPrestamo, fechaLimite);
-        
+
         comboBoxCodigoRecursoPrestamo.getSelectionModel().clearSelection();
         datePickerFechaPrestamo.getEditor().clear();
         datePickerFechaLimite.getEditor().clear();
@@ -440,14 +428,12 @@ public class FXMLLibraryBasController implements Initializable {
         LlenarListaPrestamos(codigoUsuario);
         LlenarListaRecursos();
     }
-    
-    
 
     @FXML
     private void setOnActionButtonBuscarPorId(ActionEvent event) {
         int codigoUsuario = Integer.parseInt(textIdUsuario.getText());
         Usuario usuarioEncontrado = comunidad.buscarUsuarioId(comunidad, codigoUsuario);
-        if(usuarioEncontrado == null) {
+        if (usuarioEncontrado == null) {
             mostrarNotificacion("Usuario no encontrado");
         } else {
             textNombreUsuario.setText(usuarioEncontrado.getNombreUsuario());
@@ -468,43 +454,43 @@ public class FXMLLibraryBasController implements Initializable {
 
     @FXML
     private void setOnActionButtonBuscarRecurso(ActionEvent event) {
-       int codigoRecurso = Integer.parseInt(textId.getText());
+        int codigoRecurso = Integer.parseInt(textId.getText());
         Recurso recursoEncontrado = inventario.listaRecurso.buscarRecursoId(inventario.listaRecurso, codigoRecurso);
-        if(recursoEncontrado == null) {
+        if (recursoEncontrado == null) {
             mostrarNotificacion("recurso no encontrado");
         } else {
             textNombre.setText(recursoEncontrado.getNombreRecurso());
             textId.setText("" + recursoEncontrado.getCodigoRecurso());
-            comboBoxTipo.getSelectionModel().select(recursoEncontrado.getTipo());       
+            comboBoxTipo.getSelectionModel().select(recursoEncontrado.getTipo());
         }
     }
-    
+
     private void LlenarListaRecursos() {
         TablaRecursos.getItems().clear();
         comboBoxCodigoRecursoPrestamo.getItems().clear();
         ListaRecurso apuntador = inventario.listaRecurso;
-        while(apuntador.nodo != null) {
+        while (apuntador.nodo != null) {
             TablaRecursos.getItems().add(apuntador.nodo);
             comboBoxCodigoRecursoPrestamo.getItems().add(apuntador.nodo.codigoRecurso().get());
             apuntador = apuntador.siguiente;
         }
     }
-    
+
     private void LlenarListaUsuarios() {
         tablaUsuarios.getItems().clear();
         Comunidad apuntador = comunidad;
-        while(apuntador.nodo != null) {
+        while (apuntador.nodo != null) {
             tablaUsuarios.getItems().add(apuntador.nodo);
             apuntador = apuntador.siguiente;
         }
     }
-    
+
     private void LlenarListaPrestamos(int codigoUsuario) {
         tablaPrestamos.getItems().clear();
         tablaPrestamosDevolucionesMultas.getItems().clear();
         ListaPrestamo apuntador = inventario.listaPrestamo;
-        while(apuntador.nodo != null) {
-            if(apuntador.nodo.getUsuario().getCodigoUsuario() == codigoUsuario) {
+        while (apuntador.nodo != null) {
+            if (apuntador.nodo.getUsuario().getCodigoUsuario() == codigoUsuario) {
                 tablaPrestamos.getItems().add(apuntador.nodo);
                 tablaPrestamosDevolucionesMultas.getItems().add(apuntador.nodo);
             }
@@ -516,12 +502,12 @@ public class FXMLLibraryBasController implements Initializable {
     private void setOnActionButtonBuscarPrestamos(ActionEvent event) {
         int codigoUsuario = Integer.parseInt(textCodigoUsuarioPrestamo.getText());
         Usuario usuarioEncontrado = comunidad.buscarUsuarioId(comunidad, codigoUsuario);
-        if(usuarioEncontrado == null) {
+        if (usuarioEncontrado == null) {
             mostrarNotificacion("El usuario no fue encontrado.");
         }
         LlenarListaPrestamos(codigoUsuario);
     }
-    
+
     private void mostrarNotificacion(String mensaje) {
         //JOptionPane.showMessageDialog(null, "El usuario no fue encontrado.");
         System.out.println(mensaje);
@@ -530,17 +516,16 @@ public class FXMLLibraryBasController implements Initializable {
     @FXML
     private void setOnActionButtonBuscarPorIdsetOnActionButtonDevolverRecurso(ActionEvent event) {
         Prestamo prestamoSeleccionado = tablaPrestamosDevolucionesMultas.getSelectionModel().getSelectedItem();
-        
-        if(prestamoSeleccionado.estaMultado()) {
+
+        if (prestamoSeleccionado.estaMultado()) {
             mostrarNotificacion("El recurso está multado, así que no se puede devolver hasta pagar la multa.");
             return;
         }
-        
+
         LocalDate localDateLimite = datePickerFechaDevolucion.getValue();
         Instant instantLimite = Instant.from(localDateLimite.atStartOfDay(ZoneId.systemDefault()));
         Date fechaDevolucion = Date.from(instantLimite);
-        
-        
+
         inventario.listaPrestamo.devolverRecurso(prestamoSeleccionado.getId(), fechaDevolucion);
         LlenarListaPrestamos(prestamoSeleccionado.getUsuario().getCodigoUsuario());
         LlenarListaRecursos();
@@ -549,7 +534,7 @@ public class FXMLLibraryBasController implements Initializable {
     @FXML
     private void setOnActionButtonBuscarPorIdsetOnActionButtonPagarMulta(ActionEvent event) {
         Prestamo prestamoSeleccionado = tablaPrestamosDevolucionesMultas.getSelectionModel().getSelectedItem();
-        if(!prestamoSeleccionado.estaMultado()) {
+        if (!prestamoSeleccionado.estaMultado()) {
             mostrarNotificacion("El prestamo no tiene multa, así que no hay nada que pagar.");
         } else {
             inventario.listaPrestamo.pagarMultaPrestamo(prestamoSeleccionado.getId());
@@ -562,7 +547,7 @@ public class FXMLLibraryBasController implements Initializable {
     @FXML
     private void setOnActionButtonBuscarPorIdsetOnActionButtonBuscarPrestamosDevoluciones(ActionEvent event) {
         int codigoUsuario = Integer.parseInt(textIdUsuarioDevolucion.getText());
-        if(comunidad.buscarUsuarioId(comunidad, codigoUsuario) == null) {
+        if (comunidad.buscarUsuarioId(comunidad, codigoUsuario) == null) {
             mostrarNotificacion("El usuario no existe.");
         } else {
             LlenarListaPrestamos(codigoUsuario);
@@ -573,9 +558,9 @@ public class FXMLLibraryBasController implements Initializable {
     private void setOnActionButtonMultarPrestamo(ActionEvent event) {
         Prestamo prestamoSeleccionado = tablaPrestamos.getSelectionModel().getSelectedItem();
         int valorMulta = Integer.parseInt(textValorMulta.getText());
-        
+
         inventario.listaPrestamo.multarPrestamo(prestamoSeleccionado.getId(), valorMulta);
-        
+
         LlenarListaPrestamos(prestamoSeleccionado.getUsuario().getCodigoUsuario());
     }
 }

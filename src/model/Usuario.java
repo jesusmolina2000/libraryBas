@@ -22,18 +22,18 @@ public class Usuario implements java.io.Serializable {
     private final IntegerProperty codigoUsuario = new SimpleIntegerProperty();
     private Image foto;
     private String tipo;
-    
+
     public Usuario(String nommbreUsuario, int codigoUsuario, Image foto, String tipo) {
         setNombreUsuario(nommbreUsuario);
         setCodigoUsuario(codigoUsuario);
         setFoto(foto);
         setTipo(tipo);
     }
-    
+
     public String getTipo() {
         return tipo;
     }
-    
+
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
@@ -61,11 +61,11 @@ public class Usuario implements java.io.Serializable {
     public StringProperty nombreUsuarioProperty() {
         return nombreUsuario;
     }
-    
+
     public void setFoto(Image foto) {
         this.foto = foto;
     }
-    
+
     public Image getFoto() {
         return foto;
     }

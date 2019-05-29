@@ -6,12 +6,13 @@
 package model;
 
 import java.util.Date;
+
 /**
  *
  * @author jesus
  */
 public class Prestamo implements java.io.Serializable {
-    
+
     private int id;
     private Recurso recurso;
     private Usuario usuario;
@@ -31,39 +32,41 @@ public class Prestamo implements java.io.Serializable {
     public Date getFechaPrestamo() {
         return fechaPrestamo;
     }
+
     public Date getFechaLimite() {
         return fechaLimite;
     }
+
     public Date getFechaDevolucion() {
         return fechaDevolucion;
     }
-    
+
     public String getFechaDevolucionString() {
-        if(fechaDevolucion == null) {
+        if (fechaDevolucion == null) {
             return "";
         } else {
             return fechaDevolucion.toString();
         }
-    } 
+    }
 
     public void setFechaPrestamo(Date value) {
         fechaPrestamo = value;
     }
-    
+
     public void devolverRecurso(Date fechaDevolucion) {
         this.fechaDevolucion = fechaDevolucion;
         this.recurso.Devolver();
     }
-    
+
     public boolean estaDevuelto() {
         return fechaDevolucion != null;
     }
-    
+
     public void multar(int valor) {
         multa = new Multa(valor);
     }
-    
-    public void pagarMulta(){
+
+    public void pagarMulta() {
         multa.pagar();
     }
 
@@ -74,9 +77,9 @@ public class Prestamo implements java.io.Serializable {
     public Recurso getRecurso() {
         return recurso;
     }
-    
+
     public boolean estaMultado() {
-        if(multa == null) {
+        if (multa == null) {
             return false;
         } else {
             return !multa.estaPagada();

@@ -1,0 +1,54 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+}
+
+.button{
+    -fx-background-color: linear-gradient(#006666, #009999);
+    -fx-text-fill: black;
+    -fx-background-radius: 15 15 15 15;
+    -fx-border-radius: 15 15 15 15;
+    -fx-font-family: "Times New Roman";
+}
+
+
+.button:hover{
+    -fx-background-color: linear-gradient(#009999, #006666);
+}
+
+.button:pressed{
+    -fx-background-color: #009999;
+}
+
+.button:focused{
+    -fx-background-color: linear-gradient(#009999, #006666);
+    -fx-border-width: 0 0 0 0; 
+}
+
+.label{
+    -fx-text-fill: #ffffff;
+}
+
+.combo-box{
+    -fx-background-color: #006666;
+    -fx-text-fill: #ffffff;
+}
+
+.combo-box:hover{
+    -fx-background-color: #009999;
+}
+
+.text-field{
+    -fx-border-color: black;
+    -fx-border-width: 0 0 1 0; 
+    -fx-background-color: transparent;
+    -fx-prompt-text-fill: black;
+    -fx-text-fill: black;
+    -fx-font-family: "Times New Roman";
+}
+
+.date-picker{
+    -fx-background-color: transparent;
+}
