@@ -1,8 +1,6 @@
 package model;
 
 import javax.swing.JOptionPane;
-import lista.ListaPrestamo;
-import lista.ListaRecurso;
 import model.Recurso;
 
 /**

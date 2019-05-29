@@ -46,8 +46,8 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javax.swing.JOptionPane;
-import lista.ListaPrestamo;
-import lista.ListaRecurso;
+import model.ListaPrestamo;
+import model.ListaRecurso;
 import model.Comunidad;
 import model.Docente;
 import model.Estudiante;
@@ -213,6 +213,8 @@ public class FXMLLibraryBasController implements Initializable {
         CargarDataDePrueba(); // Quitar
     }
 
+    
+    //data de prueba para facilitar explicacion
     private void CargarDataDePrueba() {
         comunidad.insertarUsuario(comunidad, "Jesus Molina", 123, "Estudiante", null);
         comunidad.insertarUsuario(comunidad, "Freddy Rada", 321, "Docente", null);
