@@ -210,7 +210,7 @@ public class FXMLLibraryBasController implements Initializable {
         comunidad = new Comunidad();
         inventario = new Inventario();
         InicializarColumnas();
-        //CargarDataDePrueba(); // Quitar
+        CargarDataDePrueba(); // Quitar
     }
 
     
