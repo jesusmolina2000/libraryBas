@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -27,7 +21,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="529.0" prefWidth="769.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLLibraryBasController">
+<AnchorPane id="AnchorPane" prefHeight="529.0" prefWidth="769.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLLibraryBasController">
     <stylesheets>
         <URL value="@estilo.css" />
     </stylesheets>
@@ -66,34 +60,34 @@
       </ImageView>
       <StackPane layoutX="214.0" layoutY="155.0">
          <children>
-            <GridPane fx:id="gridPaneDevolucion" style="-fx-background-color: white;">
+            <GridPane fx:id="gridPaneUsuario" style="-fx-background-color: white;">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="173.0" minWidth="10.0" prefWidth="76.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="278.0" minWidth="10.0" prefWidth="277.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="108.0" minHeight="0.0" prefHeight="32.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="226.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="278.0" minHeight="10.0" prefHeight="243.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="112.0" minHeight="10.0" prefHeight="112.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="122.0" minHeight="10.0" prefHeight="86.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="85.0" minHeight="10.0" prefHeight="85.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField fx:id="textIdUsuarioDevolucion" promptText="Ingrese ID del usuario" />
-                  <Button fx:id="buttonDevolver" mnemonicParsing="false" onAction="#setOnActionButtonBuscarPorIdsetOnActionButtonDevolverRecurso" prefHeight="25.0" prefWidth="186.0" stylesheets="@estilo2.css" text="Devolver Recurso" GridPane.columnIndex="2" />
-                  <TableView fx:id="tablaPrestamosDevolucionesMultas" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
-                     <columns>
-                        <TableColumn fx:id="columnaPrestamoIdDevoluciones" prefWidth="36.0" text="Id" />
-                        <TableColumn fx:id="columnaPrestamoUsuarioDevoluciones" prefWidth="71.0" text="Usuario" />
-                        <TableColumn fx:id="columnaPrestamoRecursoDevoluciones" minWidth="0.0" prefWidth="69.0" text="Recurso" />
-                        <TableColumn fx:id="columnaPrestamoFechaPrestamoDevoluciones" prefWidth="105.0" text="Fecha Prestamo" />
-                        <TableColumn fx:id="columnaPrestamoFechaLimiteDevoluciones" prefWidth="100.0" text="Fecha Límite" />
-                        <TableColumn fx:id="columnaPrestamoMultadoDevoluciones" prefWidth="65.0" text="Multado" />
-                        <TableColumn fx:id="columnaPrestamoFechaDevolucion1" maxWidth="180.0" prefWidth="164.0" text="Fecha Devuelto" />
-                     </columns>
+                  <ImageView fx:id="imageViewFoto" fitHeight="109.0" fitWidth="115.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="textNombreUsuario" promptText="Ingrese nombre " GridPane.rowIndex="1" />
+                  <TextField fx:id="textIdUsuario" promptText="Ingrese ID" />
+                  <ComboBox fx:id="comboBoxRol" prefHeight="26.0" prefWidth="267.0" promptText="Seleccione rol" GridPane.rowIndex="2" />
+                  <Button fx:id="buttonAñadirUsuario" mnemonicParsing="false" onAction="#setOnActionButtonAñadirUsuario" prefHeight="25.0" prefWidth="181.0" stylesheets="@estilo2.css" text="Añadir/Actualizar" GridPane.rowIndex="3" />
+                  <Button fx:id="buttonAgregarFoto" alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#setOnActionButtonAgregarFoto" prefHeight="25.0" prefWidth="166.0" stylesheets="@estilo2.css" text="Agregar Foto" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TableView fx:id="tablaUsuarios" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowSpan="3">
+                    <columns>
+                      <TableColumn fx:id="columnaId" prefWidth="60.0" text="ID" />
+                      <TableColumn fx:id="columnaNombre" prefWidth="123.0" text="Nombre" />
+                        <TableColumn fx:id="columnaTipoUsuario" prefWidth="93.0" text="Tipo" />
+                    </columns>
                   </TableView>
-                  <Button fx:id="buttonPagarMulta" mnemonicParsing="false" onAction="#setOnActionButtonBuscarPorIdsetOnActionButtonPagarMulta" prefHeight="25.0" prefWidth="186.0" stylesheets="@estilo2.css" text="Pagar Multa" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button fx:id="buttonBuscarPrestamosDevoluciones" mnemonicParsing="false" onAction="#setOnActionButtonBuscarPorIdsetOnActionButtonBuscarPrestamosDevoluciones" prefHeight="25.0" prefWidth="186.0" stylesheets="@estilo2.css" text="Buscar" GridPane.rowIndex="1" />
-                  <DatePicker fx:id="datePickerFechaDevolucion" GridPane.columnIndex="1" />
+                  <Button fx:id="botonBuscarPorId" alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#setOnActionButtonBuscarPorId" prefHeight="25.0" prefWidth="166.0" stylesheets="@estilo2.css" text="Buscar" GridPane.columnIndex="1" />
+                  <Button fx:id="buttonEliminarUsuario" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="148.0" layoutY="251.0" mnemonicParsing="false" onAction="#setOnActionButtonEliminarUsuario" prefHeight="25.0" prefWidth="166.0" stylesheets="@estilo2.css" text="Eliminar" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>
             <GridPane fx:id="gridPanePrestamo" layoutX="200.0" prefHeight="338.0" prefWidth="408.0" style="-fx-background-color: white;">
@@ -131,34 +125,34 @@
                   <Button fx:id="buttonMultarPrestamo" mnemonicParsing="false" onAction="#setOnActionButtonMultarPrestamo" prefHeight="25.0" prefWidth="194.0" stylesheets="@estilo2.css" text="Multar" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                </children>
             </GridPane>
-            <GridPane fx:id="gridPaneUsuario" style="-fx-background-color: white;">
+            <GridPane fx:id="gridPaneDevolucion" style="-fx-background-color: white;">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="173.0" minWidth="10.0" prefWidth="76.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="278.0" minWidth="10.0" prefWidth="277.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="112.0" minHeight="10.0" prefHeight="112.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="122.0" minHeight="10.0" prefHeight="86.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="85.0" minHeight="10.0" prefHeight="85.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="108.0" minHeight="0.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="226.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="278.0" minHeight="10.0" prefHeight="243.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ImageView fx:id="imageViewFoto" fitHeight="109.0" fitWidth="115.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="textNombreUsuario" promptText="Ingrese nombre " GridPane.rowIndex="1" />
-                  <TextField fx:id="textIdUsuario" promptText="Ingrese ID" />
-                  <ComboBox fx:id="comboBoxRol" prefHeight="26.0" prefWidth="267.0" promptText="Seleccione rol" GridPane.rowIndex="2" />
-                  <Button fx:id="buttonAñadirUsuario" mnemonicParsing="false" onAction="#setOnActionButtonAñadirUsuario" prefHeight="25.0" prefWidth="181.0" stylesheets="@estilo2.css" text="Añadir/Actualizar" GridPane.rowIndex="3" />
-                  <Button fx:id="buttonAgregarFoto" alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#setOnActionButtonAgregarFoto" prefHeight="25.0" prefWidth="166.0" stylesheets="@estilo2.css" text="Agregar Foto" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TableView fx:id="tablaUsuarios" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowSpan="3">
-                    <columns>
-                      <TableColumn fx:id="columnaId" prefWidth="60.0" text="ID" />
-                      <TableColumn fx:id="columnaNombre" prefWidth="123.0" text="Nombre" />
-                        <TableColumn fx:id="columnaTipoUsuario" prefWidth="93.0" text="Tipo" />
-                    </columns>
+                  <TextField fx:id="textIdUsuarioDevolucion" promptText="Ingrese ID del usuario" />
+                  <Button fx:id="buttonDevolver" mnemonicParsing="false" onAction="#setOnActionButtonBuscarPorIdsetOnActionButtonDevolverRecurso" prefHeight="25.0" prefWidth="186.0" stylesheets="@estilo2.css" text="Devolver Recurso" GridPane.columnIndex="2" />
+                  <TableView fx:id="tablaPrestamosDevolucionesMultas" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
+                     <columns>
+                        <TableColumn fx:id="columnaPrestamoIdDevoluciones" prefWidth="36.0" text="Id" />
+                        <TableColumn fx:id="columnaPrestamoUsuarioDevoluciones" prefWidth="71.0" text="Usuario" />
+                        <TableColumn fx:id="columnaPrestamoRecursoDevoluciones" minWidth="0.0" prefWidth="69.0" text="Recurso" />
+                        <TableColumn fx:id="columnaPrestamoFechaPrestamoDevoluciones" prefWidth="105.0" text="Fecha Prestamo" />
+                        <TableColumn fx:id="columnaPrestamoFechaLimiteDevoluciones" prefWidth="100.0" text="Fecha Límite" />
+                        <TableColumn fx:id="columnaPrestamoMultadoDevoluciones" prefWidth="65.0" text="Multado" />
+                        <TableColumn fx:id="columnaPrestamoFechaDevolucion1" maxWidth="180.0" prefWidth="164.0" text="Fecha Devuelto" />
+                     </columns>
                   </TableView>
-                  <Button fx:id="botonBuscarPorId" alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#setOnActionButtonBuscarPorId" prefHeight="25.0" prefWidth="166.0" stylesheets="@estilo2.css" text="Buscar" GridPane.columnIndex="1" />
-                  <Button fx:id="buttonEliminarUsuario" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="148.0" layoutY="251.0" mnemonicParsing="false" onAction="#setOnActionButtonEliminarUsuario" prefHeight="25.0" prefWidth="166.0" stylesheets="@estilo2.css" text="Eliminar" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Button fx:id="buttonPagarMulta" mnemonicParsing="false" onAction="#setOnActionButtonBuscarPorIdsetOnActionButtonPagarMulta" prefHeight="25.0" prefWidth="186.0" stylesheets="@estilo2.css" text="Pagar Multa" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button fx:id="buttonBuscarPrestamosDevoluciones" mnemonicParsing="false" onAction="#setOnActionButtonBuscarPorIdsetOnActionButtonBuscarPrestamosDevoluciones" prefHeight="25.0" prefWidth="186.0" stylesheets="@estilo2.css" text="Buscar" GridPane.rowIndex="1" />
+                  <DatePicker fx:id="datePickerFechaDevolucion" promptText="Fecha devolucion" stylesheets="@estilo2.css" GridPane.columnIndex="1" />
                </children>
             </GridPane>
             <GridPane fx:id="gridPaneInventario" layoutX="215.0" layoutY="166.0" prefHeight="338.0" prefWidth="530.0" style="-fx-background-color: white;">

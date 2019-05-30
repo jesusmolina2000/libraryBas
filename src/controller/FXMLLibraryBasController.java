@@ -210,12 +210,12 @@ public class FXMLLibraryBasController implements Initializable {
         comunidad = new Comunidad();
         inventario = new Inventario();
         InicializarColumnas();
-        CargarDataDePrueba(); // Quitar
+        //CargarDataDePrueba(); // Quitar
     }
 
     
     //data de prueba para facilitar explicacion
-    private void CargarDataDePrueba() {
+    /*private void CargarDataDePrueba() {
         comunidad.insertarUsuario(comunidad, "Jesus Molina", 123, "Estudiante", null);
         comunidad.insertarUsuario(comunidad, "Freddy Rada", 321, "Docente", null);
         comunidad.insertarUsuario(comunidad, "Alberto Molina", 777, "Padre de familia", null);
@@ -227,7 +227,7 @@ public class FXMLLibraryBasController implements Initializable {
 
         LlenarListaRecursos();
         LlenarListaUsuarios();
-    }
+    }*/
 
     private void InicializarColumnas() {
         columnaNombre.setCellValueFactory(new PropertyValueFactory<>("nombreUsuario"));
@@ -333,7 +333,6 @@ public class FXMLLibraryBasController implements Initializable {
         comboBoxTipo.getSelectionModel().select(0);
 
         LlenarListaRecursos();
-
     }
 
     @FXML
@@ -449,6 +448,7 @@ public class FXMLLibraryBasController implements Initializable {
     private void setOnActionButtonEliminarUsuario(ActionEvent event) {
         int codigoUsuario = Integer.parseInt(textIdUsuario.getText());
         comunidad = comunidad.eliminarUsuario(comunidad, codigoUsuario);
+        mostrarNotificacion("Eliminado");
         LlenarListaUsuarios();
         textIdUsuario.setText("");
         textNombreUsuario.setText("");
@@ -559,9 +559,8 @@ public class FXMLLibraryBasController implements Initializable {
     private void setOnActionButtonMultarPrestamo(ActionEvent event) {
         Prestamo prestamoSeleccionado = tablaPrestamos.getSelectionModel().getSelectedItem();
         int valorMulta = Integer.parseInt(textValorMulta.getText());
-
         inventario.listaPrestamo.multarPrestamo(prestamoSeleccionado.getId(), valorMulta);
-
+        mostrarNotificacion("multado");
         LlenarListaPrestamos(prestamoSeleccionado.getUsuario().getCodigoUsuario());
     }
 }
