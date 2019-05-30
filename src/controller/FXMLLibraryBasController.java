@@ -215,7 +215,7 @@ public class FXMLLibraryBasController implements Initializable {
 
     
     //data de prueba para facilitar explicacion
-    /*private void CargarDataDePrueba() {
+    private void CargarDataDePrueba() {
         comunidad.insertarUsuario(comunidad, "Jesus Molina", 123, "Estudiante", null);
         comunidad.insertarUsuario(comunidad, "Freddy Rada", 321, "Docente", null);
         comunidad.insertarUsuario(comunidad, "Alberto Molina", 777, "Padre de familia", null);
@@ -227,7 +227,7 @@ public class FXMLLibraryBasController implements Initializable {
 
         LlenarListaRecursos();
         LlenarListaUsuarios();
-    }*/
+    }
 
     private void InicializarColumnas() {
         columnaNombre.setCellValueFactory(new PropertyValueFactory<>("nombreUsuario"));
